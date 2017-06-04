@@ -5,14 +5,27 @@
   "repository": "https://github.com/TsaiAnson/eLecture.git",
   "main": "src/server/index.js",
   "scripts": {
-    "start": "node src/server/index.js"
+    "start": "cross-env NODE_ENV=production node src/server/index.js",
+    "build": "cross-env NODE_ENV=production node_modules/.bin/webpack -p",
+    "dev": "cross-env NODE_ENV=development node_modules/.bin/babel-node --presets react,es2015 src/server/index.js"
   },
   "author": "Anson, Titan",
   "license": "MIT",
   "dependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "cross-env": "^5.0.0",
+    "ejs": "^2.5.6",
     "express": "^4.15.3",
     "mongoose": "^4.10.4",
     "react": "^15.5.4",
+    "react-dom": "^15.5.4",
     "react-router": "^4.1.1"
+  },
+  "devDependencies": {
+    "babel-loader": "^7.0.0",
+    "webpack": "^2.6.1"
   }
 }

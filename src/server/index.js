@@ -22,7 +22,7 @@ mongoose.connection.on('error', console.log);
 mongoose.connection.on('disconnected', connect);
 
 // Routes
-require('./routes')(app);
+require('./routes')(router);
 app.use('/', router);
 
 // Server
