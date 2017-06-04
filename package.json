@@ -1,0 +1,18 @@
+{
+  "name": "eLecture",
+  "version": "0.0.1",
+  "description": "Online platform to facilitate communication between instructors and students during lecture",
+  "repository": "https://github.com/TsaiAnson/eLecture.git",
+  "main": "src/server/index.js",
+  "scripts": {
+    "start": "node src/server/index.js"
+  },
+  "author": "Anson, Titan",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.3",
+    "mongoose": "^4.10.4",
+    "react": "^15.5.4",
+    "react-router": "^4.1.1"
+  }
+}
