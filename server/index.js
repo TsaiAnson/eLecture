@@ -8,7 +8,7 @@ const port = process.env.PORT || 3000;
 const db = process.env.MONGODB_URI || 'mongodb://localhost/eLecture';
 
 // Database
-var connect = function () {
+const connect = function () {
     mongoose.connect(db, function (err) {
         if (err) {
             console.log('Error connecting to: ' + db + '. ' + err);
@@ -24,6 +24,9 @@ mongoose.connection.on('disconnected', connect);
 
 // Static
 app.use(express.static(path.resolve(__dirname, '../', 'public')));
+
+// Models
+require('./models/models');
 
 // Routes
 require('./routes')(router);
