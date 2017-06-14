@@ -1,8 +1,8 @@
-var path = require('path');
+const path = require('path');
 
-var main = require('./controllers/main');
+const main = require('./controllers/main');
 
-var requireAuthentication = function (request, response, next) {
+let requireAuthentication = function (request, response, next) {
     if (!request.authenticated) {
         response.redirect('/');
     }
@@ -18,7 +18,7 @@ module.exports = function (app) {
     });
 
     app.get('*', function (request, response, next) {
-
+        response.sendFile(path.resolve(__dirname, '../', 'public', 'index.html'))
     });
 
 };
