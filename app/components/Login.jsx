@@ -1,40 +1,55 @@
 import React, { Component } from 'react';
+import { Button, Col, ControlLabel, Form, FormGroup, FormControl, Modal } from 'react-bootstrap';
 
 class Login extends Component {
+
+    constructor(props) {
+        super(props);
+        this.toggle = this.toggle.bind(this);
+
+        this.state = {
+            isOpen: false
+        }
+    }
+
+    toggle() {
+        this.setState({
+            isOpen: !this.state.isOpen
+        })
+    }
 
     render() {
         return (
             <div>
-                <button type="button" className="btn btn-info" data-toggle="modal" data-target="#login-modal">Login</button>
-                <div className="modal" id="login-modal">
-                    <div className="modal-dialog" role="document">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h5 className="modal-title">Login</h5>
-                                <button type="button" className="close" data-dismiss="modal">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div className="modal-body">
-                                <div className="form-group row">
-                                    <label htmlFor="sid" className="col-sm-4 col-form-label text-sm-right">Student ID</label>
-                                    <div className="col-sm-8">
-                                        <input type="text" name="sid" className="form-control"/>
-                                    </div>
-                                </div>
-                                <div className="form-group row">
-                                    <label htmlFor="username" className="col-sm-4 col-form-label text-sm-right">Username</label>
-                                    <div className="col-sm-8">
-                                        <input type="text" name="username" className="form-control"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-info" onClick={this.toggle}>Login</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <Button bsStyle="info" onClick={this.toggle}>Login</Button>
+                <Modal show={this.state.isOpen} onHide={this.toggle}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Login</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form horizontal>
+                            <FormGroup>
+                                <Col componentClass={ControlLabel} sm={4}>
+                                    Student ID
+                                </Col>
+                                <Col sm={8}>
+                                    <FormControl type="text"/>
+                                </Col>
+                            </FormGroup>
+                            <FormGroup>
+                                <Col componentClass={ControlLabel} sm={4}>
+                                    Username
+                                </Col>
+                                <Col sm={8}>
+                                    <FormControl type="text"/>
+                                </Col>
+                            </FormGroup>
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button bsStyle="info">Login</Button>
+                    </Modal.Footer>
+                </Modal>
             </div>
         );
     }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button, ButtonToolbar, Grid, Jumbotron } from 'react-bootstrap';
 
 import Navbar from '../components/Navbar';
 
@@ -8,15 +9,17 @@ class Index extends Component {
         return (
             <div>
                 <Navbar/>
-                <div className="jumbotron text-center" style={{backgroundColor: 'white'}}>
-                    <div className="container">
+                <Jumbotron bsClass="text-center" style={{backgroundColor: 'white'}}>
+                    <Grid>
                         <img alt="Picture" height="150px"/>
-                        <h1 className="display-4 mb-3">eLecture</h1>
-                        <p className="lead mb-3">Make lectures more engaging</p>
-                        <a href="https://github.com/TsaiAnson/eLecture" className="btn btn-outline-info mr-3">View on GitHub</a>
-                        <a href="/" className="btn btn-info">Learn More</a>
-                    </div>
-                </div>
+                        <h1>eLecture</h1>
+                        <h4>Make lectures more engaging</h4>
+                        <ButtonToolbar style={{display: 'inline-block'}}>
+                            <Button bsClass="btn btn-outline-info" href="https://github.com/TsaiAnson/eLecture">View on GitHub</Button>
+                            <Button bsStyle="info">Learn More</Button>
+                        </ButtonToolbar>
+                    </Grid>
+                </Jumbotron>
             </div>
         );
     }

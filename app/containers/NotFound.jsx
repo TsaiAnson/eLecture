@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
+import { Button, Grid } from 'react-bootstrap';
 
 class NotFound extends Component {
 
     render() {
         return (
-            <div className="container">
-                <h1 className="display-4 mb-3">Not Found</h1>
-                <a href="#" className="btn btn-outline-info" onClick={this.props.history.goBack}>Back</a>
-            </div>
+            <Grid>
+                <h3>Not Found</h3>
+                <Button bsClass="btn btn-outline-info" onClick={this.props.history.goBack}>Back</Button>
+            </Grid>
         );
     }
 

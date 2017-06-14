@@ -6,4 +6,4 @@ npm-debug.log
 .idea/
 
 ## Assets ##
-public/assets/
+public/assets/js/app.js

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Navbar as NavBar } from 'react-bootstrap';
 
 import Login from './Login';
 
@@ -6,17 +7,18 @@ class Navbar extends Component {
 
     render() {
         return (
-            <nav className="navbar navbar-toggleable-sm navbar-light bg-faded">
-                <div className="container">
-                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
-                        <span className="navbar-toggler-icon"/>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbar">
-                        <a className="navbar-brand mr-auto" href="/">eLecture</a>
+            <NavBar>
+                <NavBar.Header>
+                    <NavBar.Brand>
+                        <a href="/">eLecture</a>
+                    </NavBar.Brand>
+                </NavBar.Header>
+                <NavBar.Collapse>
+                    <NavBar.Form pullRight>
                         <Login/>
-                    </div>
-                </div>
-            </nav>
+                    </NavBar.Form>
+                </NavBar.Collapse>
+            </NavBar>
         );
     }
 
