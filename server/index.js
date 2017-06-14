@@ -1,10 +1,11 @@
-var express = require('express'),
+const express = require('express'),
+    path = require('path'),
     router = express.Router(),
     mongoose = require('mongoose'),
     app = express();
 
-var port = process.env.PORT || 3000;
-var db = process.env.MONGODB_URI || 'mongodb://localhost/eLecture';
+const port = process.env.PORT || 3000;
+const db = process.env.MONGODB_URI || 'mongodb://localhost/eLecture';
 
 // Database
 var connect = function () {
@@ -21,8 +22,11 @@ connect();
 mongoose.connection.on('error', console.log);
 mongoose.connection.on('disconnected', connect);
 
+// Static
+app.use(express.static(path.resolve(__dirname, '../', 'public')));
+
 // Routes
-require('./routes')(app);
+require('./routes')(router);
 app.use('/', router);
 
 // Server
