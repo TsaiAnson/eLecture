@@ -10,8 +10,9 @@ class Navbar extends Component {
             <NavBar>
                 <NavBar.Header>
                     <NavBar.Brand>
-                        <a href="/">eLecture</a>
+                        <a href="/" className="logo" style={{marginTop: '4px', fontSize: '28px'}}/>
                     </NavBar.Brand>
+                    <NavBar.Toggle/>
                 </NavBar.Header>
                 <NavBar.Collapse>
                     <NavBar.Form pullRight>
