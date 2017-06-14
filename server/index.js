@@ -22,7 +22,7 @@ connect();
 mongoose.connection.on('error', console.log);
 mongoose.connection.on('disconnected', connect);
 
-// Static assets
+// Static
 app.use(express.static(path.resolve(__dirname, '../', 'public')));
 
 // Routes
