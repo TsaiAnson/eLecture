@@ -2,8 +2,8 @@
 
 const chai = require('chai'),
     chaiHttp = require('chai-http'),
-    expect = chai.expect,
-    server = require('../server/index');
+    server = require('../server/index'),
+    should = chai.should();
 
 chai.use(chaiHttp);
 
@@ -13,10 +13,9 @@ describe('Server', function () {
             chai.request(server)
                 .get('/api/foobar')
                 .end(function (error, response) {
-                    expect(response).to.be.json;
-                    expect(response).to.have.status(404);
-                    // expect(response).to.have.param('messsage', 'Not Found');
-                    // expect(response).to.have.param('uri', 'foobar');
+                    response.should.have.status(404);
+                    response.body.should.have.property('message', 'Not Found');
+                    response.body.should.have.property('uri', 'foobar');
                     done();
                 });
         });

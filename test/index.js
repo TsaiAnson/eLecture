@@ -2,8 +2,8 @@
 
 const chai = require('chai'),
     chaiHttp = require('chai-http'),
-    expect = chai.expect,
-    server = require('../server/index');
+    server = require('../server/index'),
+    should = chai.should();
 
 chai.use(chaiHttp);
 
@@ -13,6 +13,7 @@ describe('Index', function () {
             chai.request(server)
                 .get('/')
                 .end(function (error, response) {
+                    response.should.have.status(200);
                     done();
                 });
         });
