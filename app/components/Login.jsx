@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Col, ControlLabel, Form, FormGroup, FormControl, Modal } from 'react-bootstrap';
+import { Button, Col, Form, ControlLabel, FormGroup, FormControl, Modal } from 'react-bootstrap';
 
 class Login extends Component {
 
@@ -9,13 +9,13 @@ class Login extends Component {
 
         this.state = {
             isOpen: false
-        }
+        };
     }
 
     toggle() {
         this.setState({
             isOpen: !this.state.isOpen
-        })
+        });
     }
 
     render() {
