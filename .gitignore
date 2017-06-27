@@ -4,3 +4,6 @@ npm-debug.log
 
 ## WebStorm ##
 .idea/
+
+## Assets ##
+public/assets/js/app.js
