@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
 import { Button, Col, Form, ControlLabel, FormGroup, FormControl, Modal } from 'react-bootstrap';
+import { connect } from 'react-redux';
+
+import { login } from '../actions/users';
 
 class Login extends Component {
 
     constructor(props) {
         super(props);
         this.toggle = this.toggle.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.login = this.login.bind(this);
 
         this.state = {
-            isOpen: false
+            isOpen: false,
+            sid: '',
+            username: ''
         };
     }
 
@@ -16,6 +23,18 @@ class Login extends Component {
         this.setState({
             isOpen: !this.state.isOpen
         });
+    }
+
+    handleChange(event) {
+        this.setState({
+            [event.target.name]: event.target.value
+        });
+    }
+
+    login() {
+        const { dispatch } = this.props;
+        const { sid, username } = this.state;
+        dispatch(login(sid, username));
     }
 
     render() {
@@ -33,7 +52,7 @@ class Login extends Component {
                                     Student ID
                                 </Col>
                                 <Col sm={8}>
-                                    <FormControl type="text"/>
+                                    <FormControl type="text" name="sid" value={this.state.sid} onChange={this.handleChange}/>
                                 </Col>
                             </FormGroup>
                             <FormGroup>
@@ -41,13 +60,13 @@ class Login extends Component {
                                     Username
                                 </Col>
                                 <Col sm={8}>
-                                    <FormControl type="text"/>
+                                    <FormControl type="text" name="username" value={this.state.username} onChange={this.handleChange}/>
                                 </Col>
                             </FormGroup>
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button bsStyle="info">Login</Button>
+                        <Button bsStyle="info" onClick={this.login}>Login</Button>
                     </Modal.Footer>
                 </Modal>
             </div>
@@ -56,4 +75,4 @@ class Login extends Component {
 
 }
 
-export default Login;
+export default connect()(Login);

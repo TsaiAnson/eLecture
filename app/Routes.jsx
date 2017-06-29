@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router';
+import { connect } from 'react-redux';
 
 import App from './containers/App';
 import Index from './containers/Index';
@@ -9,7 +10,7 @@ import SignUp from './containers/SignUp';
 class Routes extends Component {
 
     requireAuth() {
-        return true;
+        return this.props.authenticated;
     }
 
     render() {
@@ -25,4 +26,10 @@ class Routes extends Component {
 
 }
 
-export default Routes;
+function mapStateToProps(state) {
+    return {
+        authenticated: state.authenticated
+    }
+}
+
+export default connect(mapStateToProps)(Routes);

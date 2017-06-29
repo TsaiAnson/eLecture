@@ -25,8 +25,8 @@ class Index extends Component {
                             <img alt="Picture"/>
                         </Col>
                     </Row>
+                    <Button bsClass="btn btn-outline-info" href="https://github.com/TsaiAnson/eLecture">View on GitHub</Button>
                 </Grid>
-                <Button bsClass="btn btn-outline-info" href="https://github.com/TsaiAnson/eLecture">View on GitHub</Button>
             </div>
         );
     }
