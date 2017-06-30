@@ -1,13 +1,41 @@
 import React, { Component } from 'react';
-import { Grid, Col, Form, FormGroup, ControlLabel, FormControl, Radio } from 'react-bootstrap';
+import { Button, Col, Form, FormGroup, ControlLabel, FormControl, Panel, Radio } from 'react-bootstrap';
+import { connect } from 'react-redux';
+
+import { createStudent } from '../actions/students';
+import { createInstructor } from '../actions/instructors';
 
 class SignUp extends Component {
 
     constructor(props) {
         super(props);
+        this.handleChange = this.handleChange.bind(this);
+        this.signUp = this.signUp.bind(this);
+
         this.state = {
-            instructor: undefined
+            instructor: false,
+            course: '',
+            sid: '',
+            name: '',
+            email: '',
+            password: ''
         };
+    }
+
+    handleChange(event) {
+        this.setState({
+            [event.target.name]: event.target.value
+        });
+    }
+
+    signUp() {
+        const { dispatch } = this.props;
+        const { instructor, course, sid, name, email, password } = this.state;
+        if (instructor) {
+            dispatch(createInstructor(email, password));
+        } else {
+            dispatch(createStudent(course, name));
+        }
     }
 
     render() {
@@ -19,7 +47,7 @@ class SignUp extends Component {
                         Name
                     </Col>
                     <Col sm={8}>
-                        <FormControl type="text"/>
+                        <FormControl type="text" name="name" value={this.state.name} onChange={this.handleChange}/>
                     </Col>
                 </FormGroup>
                 <FormGroup>
@@ -27,7 +55,7 @@ class SignUp extends Component {
                         Email
                     </Col>
                     <Col sm={8}>
-                        <FormControl type="text"/>
+                        <FormControl type="text" name="email" value={this.state.email} onChange={this.handleChange}/>
                     </Col>
                 </FormGroup>
                 <FormGroup>
@@ -35,7 +63,7 @@ class SignUp extends Component {
                         Password
                     </Col>
                     <Col sm={8}>
-                        <FormControl type="password"/>
+                        <FormControl type="password" name="password" value={this.state.password} onChange={this.handleChange}/>
                     </Col>
                 </FormGroup>
             </div>;
@@ -46,7 +74,7 @@ class SignUp extends Component {
                         Course Code
                     </Col>
                     <Col sm={8}>
-                        <FormControl type="text"/>
+                        <FormControl type="text" name="course" value={this.state.course} onChange={this.handleChange}/>
                     </Col>
                 </FormGroup>
                 <FormGroup>
@@ -54,14 +82,14 @@ class SignUp extends Component {
                         Student ID
                     </Col>
                     <Col sm={8}>
-                        <FormControl type="text"/>
+                        <FormControl type="text" name="sid" value={this.state.sid} onChange={this.handleChange}/>
                     </Col>
                 </FormGroup>
             </div>;
         }
 
         return (
-            <Grid>
+            <Panel>
                 <Form horizontal>
                     <FormGroup>
                         <Col sm={8} smOffset={4}>
@@ -74,11 +102,16 @@ class SignUp extends Component {
                         </Col>
                     </FormGroup>
                     {content}
+                    <FormGroup>
+                        <Col sm={8} smOffset={4}>
+                            <Button bsStyle="info">Sign Up</Button>
+                        </Col>
+                    </FormGroup>
                 </Form>
-            </Grid>
+            </Panel>
         );
     }
 
 }
 
-export default SignUp;
+export default connect()(SignUp);

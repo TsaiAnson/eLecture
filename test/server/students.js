@@ -7,11 +7,11 @@ const chai = require('chai'),
 
 chai.use(chaiHttp);
 
-describe('Users', function () {
-    describe('POST /api/login', function () {
-        it('should login the user', function (done) {
+describe('Students', function () {
+    describe('POST /api/student/login', function () {
+        it('should login the student', function (done) {
             chai.request(server)
-                .post('/api/login')
+                .post('/api/student/login')
                 .send({sid: '123', username: 'foobar'})
                 .end(function (error, response) {
                     response.should.have.status(200);

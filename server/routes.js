@@ -1,7 +1,8 @@
 const path = require('path');
 
 const main = require('./controllers/main'),
-    users = require('./controllers/users');
+    students = require('./controllers/students'),
+    instructors = require('./controllers/instructors');
 
 let requireAuthentication = function (request, response, next) {
     // if (!request.authenticated) {
@@ -15,8 +16,20 @@ module.exports = function (app) {
     // all API calls require authentication
     app.all('/api/*', requireAuthentication);
 
-    app.post('/api/login', function (request, response, next) {
-        users.login(request, response, next);
+    app.post('/api/student/login', function (request, response, next) {
+        students.login(request, response, next);
+    });
+
+    app.post('/api/instructor/login', function (request, response, next) {
+        instructors.login(request, response, next);
+    });
+
+    app.post('/api/student', function (request, response, next) {
+        students.create(request, response, next);
+    });
+
+    app.post('/api/instructor', function (request, response, next) {
+        instructors.create(request, response, next);
     });
 
     app.get('/api/:uri', function (request, response, next) {
