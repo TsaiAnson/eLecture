@@ -1,19 +1,20 @@
 import * as types from '../actions/types';
 
 const initialState = {
-    authenticated: false
+    sid: '',
+    username: ''
 };
 
-function user(state = initialState, action) {
+function student(state = initialState, action) {
     switch (action.type) {
         case types.LOGIN_STUDENT_SUCCESS:
-        case types.LOGIN_INSTRUCTOR_SUCCESS:
             return Object.assign({}, state, {
-                authenticated: true
+                sid: action.req.data.sid,
+                username: action.req.data.username
             });
         default:
             return state;
     }
 }
 
-export default user;
+export default student;

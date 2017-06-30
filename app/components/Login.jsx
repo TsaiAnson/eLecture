@@ -47,7 +47,7 @@ class Login extends Component {
 
     render() {
         let content = null;
-        if (this.state.instructor === true) {
+        if (this.state.instructor) {
             content = <div>
                 <FormGroup>
                     <Col componentClass={ControlLabel} sm={4}>
@@ -66,7 +66,7 @@ class Login extends Component {
                     </Col>
                 </FormGroup>
             </div>;
-        } else if (this.state.instructor === false) {
+        } else {
             content = <div>
                 <FormGroup>
                     <Col componentClass={ControlLabel} sm={4}>

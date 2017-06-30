@@ -3,7 +3,6 @@ const mongoose = require('mongoose'),
 
 const StudentSchema = new Schema({
     sid: {type: String, required: true, unique: true},
-    username: {type: String, required: true},
     courses: {type: [Schema.Types.ObjectId]}
 });
 

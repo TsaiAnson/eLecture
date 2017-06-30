@@ -32,15 +32,15 @@ class SignUp extends Component {
         const { dispatch } = this.props;
         const { instructor, course, sid, name, email, password } = this.state;
         if (instructor) {
-            dispatch(createInstructor(email, password));
+            dispatch(createInstructor(name, email, password));
         } else {
-            dispatch(createStudent(course, name));
+            dispatch(createStudent(course, sid));
         }
     }
 
     render() {
         let content = null;
-        if (this.state.instructor === true) {
+        if (this.state.instructor) {
             content = <div>
                 <FormGroup>
                     <Col componentClass={ControlLabel} sm={4}>
@@ -67,7 +67,7 @@ class SignUp extends Component {
                     </Col>
                 </FormGroup>
             </div>;
-        } else if (this.state.instructor === false) {
+        } else {
             content = <div>
                 <FormGroup>
                     <Col componentClass={ControlLabel} sm={4}>
