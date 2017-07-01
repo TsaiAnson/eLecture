@@ -9,6 +9,8 @@ exports.create = function (request, response, next) {
     new Instructor(request.body).save(function (error, instructor) {
         if (!error) {
             response.status(200).json(instructor);
+        } else {
+            next(error);
         }
     });
 };

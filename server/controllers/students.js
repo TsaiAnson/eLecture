@@ -7,7 +7,7 @@ exports.login = function (request, response, next) {
 };
 
 exports.create = function (request, response, next) {
-    Course.find({code: request.body.course}, function (error, course) {
+    Course.findOne({code: request.body.course}, function (error, course) {
         if (!error) {
             if (course) {
                 request.body.courses = [course._id];
@@ -17,6 +17,8 @@ exports.create = function (request, response, next) {
             } else {
                 response.status(400).json({message: 'Invalid course'});
             }
+        } else {
+            next(error);
         }
     });
 };

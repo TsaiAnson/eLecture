@@ -2,10 +2,10 @@
 
 const chai = require('chai'),
     chaiHttp = require('chai-http'),
-    server = require('../../server/index'),
-    should = chai.should();
+    should = chai.should(),
+    server = require('../../server/index');
 
-chai.use(chaiHttp);
+    chai.use(chaiHttp);
 
 describe('Main', function () {
     describe('GET /api/foobar', function () {

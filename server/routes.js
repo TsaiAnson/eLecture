@@ -2,7 +2,8 @@ const path = require('path');
 
 const main = require('./controllers/main'),
     students = require('./controllers/students'),
-    instructors = require('./controllers/instructors');
+    instructors = require('./controllers/instructors'),
+    courses = require('./controllers/courses');
 
 let requireAuthentication = function (request, response, next) {
     // if (!request.authenticated) {
@@ -30,6 +31,10 @@ module.exports = function (app) {
 
     app.post('/api/instructor', function (request, response, next) {
         instructors.create(request, response, next);
+    });
+
+    app.post('/api/course', function (request, response, next) {
+        courses.create(request, response, next);
     });
 
     app.get('/api/:uri', function (request, response, next) {

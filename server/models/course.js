@@ -3,7 +3,9 @@ const mongoose = require('mongoose'),
 
 const CourseSchema = new Schema({
     term: {type: String, required: true},
-    title: {type: String},
+    year: {type: Number, required: true},
+    number: {type: String, required: true},
+    name: {type: String},
     instructors: {type: [Schema.Types.ObjectId], required: true},
     code: {type: String, required: true, unique: true},
     lectures: {type: [Schema.Types.ObjectId]}
