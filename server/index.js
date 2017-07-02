@@ -1,11 +1,15 @@
 const express = require('express'),
     path = require('path'),
     router = express.Router(),
+    bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
     app = express();
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+
 const port = process.env.PORT || 3000;
-const db = process.env.MONGODB_URI || 'mongodb://localhost/eLecture';
+const db = process.env.MONGODB_URI || process.env.NODE_ENV === 'test' ? 'mongodb://localhost/eLecture-test' : 'mongodb://localhost/eLecture';
 
 // Database
 const connect = function () {

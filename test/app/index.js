@@ -2,7 +2,7 @@
 
 const chai = require('chai'),
     chaiHttp = require('chai-http'),
-    server = require('../server/index'),
+    server = require('../../server/index'),
     should = chai.should();
 
 chai.use(chaiHttp);
