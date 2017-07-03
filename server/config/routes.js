@@ -1,9 +1,9 @@
 const path = require('path');
 
-const main = require('./controllers/main'),
-    students = require('./controllers/students'),
-    instructors = require('./controllers/instructors'),
-    courses = require('./controllers/courses');
+const main = require('../controllers/main'),
+    students = require('../controllers/students'),
+    instructors = require('../controllers/instructors'),
+    courses = require('../controllers/courses');
 
 let requireAuthentication = function (request, response, next) {
     // if (!request.authenticated) {

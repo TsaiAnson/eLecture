@@ -3,6 +3,7 @@ const express = require('express'),
     router = express.Router(),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
+    passport = require('passport'),
     app = express();
 
 app.use(bodyParser.json());
@@ -33,8 +34,12 @@ app.use(express.static(path.resolve(__dirname, '../', 'public')));
 require('./models/models');
 
 // Routes
-require('./routes')(router);
+require('./config/routes')(router);
 app.use('/', router);
+
+// Passport
+app.use(passport.initialize());
+require('./config/passport')(passport);
 
 // Server
 app.listen(port, function (error) {

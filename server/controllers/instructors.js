@@ -1,14 +1,44 @@
 const mongoose = require('mongoose'),
+    passport = require('passport'),
     Instructor = mongoose.model('Instructor');
 
 exports.login = function (request, response, next) {
-    response.status(200).json({message: 'Login success', email: request.body.email, password: request.body.password});
+    passport.authenticate('instructor', function (error, instructor) {
+        if (!error) {
+            if (!instructor) {
+                response.redirect('/');
+            }
+            request.logIn(instructor, function (error) {
+                if (!error) {
+                    response.status(200).json(instructor);
+                } else {
+                    response.status(401).json({message: error});
+                }
+            });
+        } else {
+            next(error);
+        }
+    });
 };
 
 exports.create = function (request, response, next) {
-    new Instructor(request.body).save(function (error, instructor) {
+    Instructor.findOne({email: request.body.email}, function (error, instructor) {
         if (!error) {
-            response.status(200).json(instructor);
+            if (!instructor) {
+                let instructor = new Instructor(request.body);
+                instructor.encryptPassword(function (error, password) {
+                    console.log(password);
+                });
+                instructor.save(function (error, instructor) {
+                    if (!error) {
+                        response.status(200).json(instructor);
+                    } else {
+                        next(error);
+                    }
+                });
+            } else {
+                next(new Error('Email already exists.'));
+            }
         } else {
             next(error);
         }
