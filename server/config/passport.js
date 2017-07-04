@@ -6,32 +6,49 @@ const passport = require('passport'),
 
 module.exports = function (passport) {
     passport.use('student', new LocalStrategy(
-        function (sid, done) {
+        {
+            usernameField: 'sid',
+            passwordField: 'sid'
+        },
+        function (sid, password, done) {
             Student.findOne({sid: sid}, function (error, student) {
-                if (error) {
+                if (!error) {
+                    if (!student) {
+                        return done(null, false, {message: 'Invalid student ID.'});
+                    }
+                    return done(null, student);
+                } else {
                     return done(error);
                 }
-                if (!student) {
-                    return done(null, false, {message: 'Invalid student ID.'});
-                }
-                return done(null, student);
             });
         }
     ));
 
     passport.use('instructor', new LocalStrategy(
+        {
+            usernameField: 'email',
+            passwordField: 'password'
+        },
         function (email, password, done) {
-            Instructor.findOne({email: email}, function (err, instructor) {
-                if (err) {
-                    return done(err);
+            Instructor.findOne({email: email}, function (error, instructor) {
+                if (!error) {
+                    if (!instructor) {
+                        return done(null, false, {message: 'Invalid email.'});
+                    }
+                    Instructor.comparePassword(password, instructor.password, function (error, match) {
+                        if (!error) {
+                            if (!match) {
+                                return done(null, false, {message: 'Incorrect password.'});
+                            } else {
+                                return done(null, instructor);
+                            }
+                        } else {
+                            return done(error);
+                        }
+                    })
+                } else {
+                    return done(error);
                 }
-                if (!instructor) {
-                    return done(null, false, {message: 'Invalid email.'});
-                }
-                if (!instructor.comparePassword(password)) {
-                    return done(null, false, {message: 'Incorrect password.'});
-                }
-                return done(null, instructor);
             });
         }
     ));

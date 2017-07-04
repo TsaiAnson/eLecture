@@ -9,11 +9,11 @@ const InstructorSchema = new Schema({
     courses: {type: [Schema.Types.ObjectId]}
 });
 
-InstructorSchema.methods = {
+InstructorSchema.statics = {
     encryptPassword: function (password, callback) {
         bcrypt.genSalt(10, function (error, salt) {
             if (!error) {
-                bcrypt.hash(password, salt, function (error, hash) {
+                bcrypt.hash(password, salt, null, function (error, hash) {
                     return callback(error, hash);
                 });
             } else {

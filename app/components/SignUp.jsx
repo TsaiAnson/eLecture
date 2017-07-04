@@ -104,7 +104,7 @@ class SignUp extends Component {
                     {content}
                     <FormGroup>
                         <Col sm={8} smOffset={4}>
-                            <Button bsStyle="info">Sign Up</Button>
+                            <Button bsStyle="info" onClick={this.signUp}>Sign Up</Button>
                         </Col>
                     </FormGroup>
                 </Form>

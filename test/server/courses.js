@@ -52,7 +52,7 @@ describe('Courses', function () {
                     response.body.should.have.property('name', 'foobar');
                     response.body.should.have.property('instructors');
                     response.body.instructors.should.be.an('array').that.has.lengthOf(1);
-                    response.body.instructors.should.include(instructor._id.toString());
+                    response.body.instructors.should.include(instructor.id);
                     response.body.should.have.property('code').that.has.lengthOf(6);
                     done();
                 });

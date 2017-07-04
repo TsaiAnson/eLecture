@@ -25,6 +25,10 @@ module.exports = function (app) {
         instructors.login(request, response, next);
     });
 
+    app.get('/logout', function (request, response, next) {
+        main.logout(request, response, next);
+    });
+
     app.post('/api/student', function (request, response, next) {
         students.create(request, response, next);
     });
@@ -42,7 +46,7 @@ module.exports = function (app) {
     });
 
     app.get('*', function (request, response, next) {
-        response.sendFile(path.resolve(__dirname, '../', 'public', 'index.html'))
+        response.sendFile(path.resolve(__dirname, '../', '../', 'public', 'index.html'))
     });
 
 };

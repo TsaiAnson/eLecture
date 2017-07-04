@@ -3,22 +3,23 @@ const mongoose = require('mongoose'),
     Instructor = mongoose.model('Instructor');
 
 exports.login = function (request, response, next) {
-    passport.authenticate('instructor', function (error, instructor) {
+    passport.authenticate('instructor', function (error, instructor, info, next) {
         if (!error) {
             if (!instructor) {
-                response.redirect('/');
+                return response.status(401).json({message: info.message});
             }
             request.logIn(instructor, function (error) {
                 if (!error) {
-                    response.status(200).json(instructor);
+                    return response.status(200).json(instructor);
                 } else {
-                    response.status(401).json({message: error});
+                    console.log(error);
+                    return response.status(401).json({message: error});
                 }
             });
         } else {
-            next(error);
+            return next(error);
         }
-    });
+    })(request, response, next);
 };
 
 exports.create = function (request, response, next) {
@@ -26,8 +27,8 @@ exports.create = function (request, response, next) {
         if (!error) {
             if (!instructor) {
                 let instructor = new Instructor(request.body);
-                instructor.encryptPassword(function (error, password) {
-                    console.log(password);
+                Instructor.encryptPassword(instructor.password, function (error, password) {
+                    instructor.password = password;
                 });
                 instructor.save(function (error, instructor) {
                     if (!error) {

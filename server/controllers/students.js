@@ -4,22 +4,22 @@ const mongoose = require('mongoose'),
     Course = mongoose.model('Course');
 
 exports.login = function (request, response, next) {
-    passport.authenticate('student', function (error, student) {
+    passport.authenticate('student', function (error, student, info, next) {
         if (!error) {
             if (!student) {
-                response.redirect('/');
+                return response.status(401).json({message: info.message});
             }
             request.logIn(student, function (error) {
                 if (!error) {
-                    response.status(200).json(student);
+                    return response.status(200).json(student);
                 } else {
-                    response.status(401).json({message: error});
+                    return response.status(401).json({message: error});
                 }
             });
         } else {
-            next(error);
+            return next(error);
         }
-    });
+    })(request, response, next);
 };
 
 exports.create = function (request, response, next) {
