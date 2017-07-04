@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router';
 import { createStore, applyMiddleware } from 'redux';
+import { routerMiddleware } from 'react-router-redux';
 import { createBrowserHistory } from 'history';
 
 import '../public/assets/css/app.css';
@@ -17,15 +18,17 @@ import logger from './api/logger';
 class App extends Component {
 
     render() {
+        const history = createBrowserHistory();
         const middleware = [
             promise,
-            process.env.NODE_ENV === 'development' && logger
+            routerMiddleware(history),
+            process.env.NODE_ENV === 'development' && logger,
         ].filter(Boolean);
         const store = createStore(rootReducer, applyMiddleware(...middleware));
 
         return (
             <Provider store={store}>
-                <Router history={createBrowserHistory()}>
+                <Router history={history}>
                     <Routes/>
                 </Router>
             </Provider>
