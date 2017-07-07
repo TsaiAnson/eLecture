@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router';
+import { Switch, Route, Redirect } from 'react-router';
 import { connect } from 'react-redux';
 
 import App from './containers/App';
@@ -11,21 +11,28 @@ class Routes extends Component {
     constructor(props) {
         super(props);
         this.requireAuth = this.requireAuth.bind(this);
+        this.checkAuth = this.checkAuth.bind(this);
     }
 
     requireAuth(component) {
-        console.log(this.props);
-        // if (this.props.authenticated) {
+        if (this.props.authenticated) {
             return component;
-        // }
-        // return <Redirect to="/"/>;
+        }
+        return <Redirect to="/"/>;
+    }
+
+    checkAuth(component) {
+        if (this.props.authenticated) {
+            return <Redirect to="/app"/>;
+        }
+        return component;
     }
 
     render() {
         return (
             <Switch>
-                <Route exact path="/" component={Index}/>
-                <Route exact path="/signup" component={Index}/>
+                <Route exact path="/" render={() => this.checkAuth(<Index/>)}/>
+                <Route exact path="/signup" render={() => this.checkAuth(<Index/>)}/>
                 <Route path="/app" render={() => this.requireAuth(<App/>)}/>
                 <Route component={NotFound}/>
             </Switch>
