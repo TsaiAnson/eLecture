@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Grid } from 'react-bootstrap';
 import { Switch, Route } from 'react-router';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
 
 import Navbar from '../components/Navbar';
 import Home from '../components/Home';
@@ -12,7 +11,7 @@ class Index extends Component {
 
     componentWillUpdate(props) {
         if (props.authenticated) {
-            props.dispatch(push('/app'));
+            props.history.push('/app');
         }
     }
 

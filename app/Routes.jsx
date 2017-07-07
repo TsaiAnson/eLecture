@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { Switch, Route, Redirect } from 'react-router';
+import { Switch, Route } from 'react-router';
 import { connect } from 'react-redux';
 
 import App from './containers/App';
 import Index from './containers/Index';
 import NotFound from './containers/NotFound';
-import SignUp from './components/SignUp';
 
 class Routes extends Component {
 
@@ -15,6 +14,7 @@ class Routes extends Component {
     }
 
     requireAuth(component) {
+        console.log(this.props);
         // if (this.props.authenticated) {
             return component;
         // }

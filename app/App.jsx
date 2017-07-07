@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router';
 import { createStore, applyMiddleware } from 'redux';
-import { routerMiddleware } from 'react-router-redux';
 import { createBrowserHistory } from 'history';
 
 import '../public/assets/css/app.css';
@@ -21,8 +20,7 @@ class App extends Component {
         const history = createBrowserHistory();
         const middleware = [
             promise,
-            routerMiddleware(history),
-            process.env.NODE_ENV === 'development' && logger,
+            process.env.NODE_ENV === 'development' && logger
         ].filter(Boolean);
         const store = createStore(rootReducer, applyMiddleware(...middleware));
 
