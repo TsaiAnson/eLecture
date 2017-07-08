@@ -1,7 +1,6 @@
 import * as types from '../actions/types';
 
 const initialState = {
-    sid: '',
     username: ''
 };
 
@@ -9,8 +8,11 @@ function student(state = initialState, action) {
     switch (action.type) {
         case types.LOGIN_STUDENT_SUCCESS:
             return Object.assign({}, state, {
-                sid: action.req.data.sid,
                 username: action.req.data.username
+            });
+        case types.LOGOUT_REQUEST:
+            return Object.assign({}, state, {
+                username: ''
             });
         default:
             return state;

@@ -1,31 +1,43 @@
 import React, { Component } from 'react';
-import { Switch, Route, Redirect } from 'react-router';
+import { Switch, Route, withRouter } from 'react-router';
 import { connect } from 'react-redux';
 
 import App from './containers/App';
 import Index from './containers/Index';
 import NotFound from './containers/NotFound';
-import SignUp from './components/SignUp';
 
 class Routes extends Component {
 
     constructor(props) {
         super(props);
         this.requireAuth = this.requireAuth.bind(this);
+        this.checkAuth = this.checkAuth.bind(this);
     }
 
     requireAuth(component) {
-        // if (this.props.authenticated) {
+        if (this.props.authenticated) {
             return component;
-        // }
-        // return <Redirect to="/"/>;
+        }
+        // TODO: find cleaner alternative
+        this.props.history.push('/login');
+        return <Index/>;
+    }
+
+    checkAuth(component) {
+        if (this.props.authenticated) {
+            // TODO: find cleaner alternative
+            this.props.history.push('/app');
+            return <App/>;
+        }
+        return component;
     }
 
     render() {
         return (
             <Switch>
-                <Route exact path="/" component={Index}/>
-                <Route exact path="/signup" component={Index}/>
+                <Route exact path="/" render={() => this.checkAuth(<Index/>)}/>
+                <Route exact path="/login" render={() => this.checkAuth(<Index/>)}/>
+                <Route exact path="/signup" render={() => this.checkAuth(<Index/>)}/>
                 <Route path="/app" render={() => this.requireAuth(<App/>)}/>
                 <Route component={NotFound}/>
             </Switch>
@@ -40,4 +52,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(Routes);
+export default withRouter(connect(mapStateToProps)(Routes));

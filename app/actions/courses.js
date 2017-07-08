@@ -5,7 +5,7 @@ import * as types from './types';
 export function createCourse(term, year, number, name, instructors) {
     return {
         type: types.CREATE_COURSE,
-        promise: axios.post('/api/course', {
+        promise: axios.post('/api/courses', {
             term: term,
             year: year,
             number: number,

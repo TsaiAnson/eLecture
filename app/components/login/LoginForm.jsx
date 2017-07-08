@@ -1,32 +1,20 @@
 import React, { Component } from 'react';
-import { Button, Col, Form, ControlLabel, FormGroup, FormControl, Modal, Radio } from 'react-bootstrap';
-import { connect } from 'react-redux';
+import { Button, Col, Form, ControlLabel, FormGroup, FormControl, Radio } from 'react-bootstrap';
 
-import { loginStudent } from '../actions/students';
-import { loginInstructor } from '../actions/instructors';
-
-class Login extends Component {
+class LoginForm extends Component {
 
     constructor(props) {
         super(props);
-        this.toggle = this.toggle.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.login = this.login.bind(this);
 
         this.state = {
-            isOpen: false,
             instructor: false,
             sid: '',
             username: '',
             email: '',
             password: ''
-        };
-    }
-
-    toggle() {
-        this.setState({
-            isOpen: !this.state.isOpen
-        });
+        }
     }
 
     handleChange(event) {
@@ -36,13 +24,7 @@ class Login extends Component {
     }
 
     login() {
-        const { dispatch } = this.props;
-        const { instructor, sid, username, email, password } = this.state;
-        if (instructor) {
-            dispatch(loginInstructor(email, password));
-        } else {
-            dispatch(loginStudent(sid, username));
-        }
+        this.props.login(this.state);
     }
 
     render() {
@@ -89,34 +71,28 @@ class Login extends Component {
 
         return (
             <div>
-                <Button bsStyle="info" onClick={this.toggle}>Login</Button>
-                <Modal show={this.state.isOpen} onHide={this.toggle}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Login</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <Form horizontal>
-                            <FormGroup>
-                                <Col sm={8} smOffset={4}>
-                                    <Radio name="instructor" inline checked={this.state.instructor === true} onChange={() => {this.setState({instructor: true})}}>
-                                        I'm an instructor
-                                    </Radio>
-                                    <Radio name="instructor" inline checked={this.state.instructor === false} onChange={() => {this.setState({instructor: false})}}>
-                                        I'm a student
-                                    </Radio>
-                                </Col>
-                            </FormGroup>
-                            {content}
-                        </Form>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button bsStyle="info" onClick={this.login}>Login</Button>
-                    </Modal.Footer>
-                </Modal>
+                <Form horizontal>
+                    <FormGroup>
+                        <Col sm={8} smOffset={4}>
+                            <Radio name="instructor" inline checked={this.state.instructor === true} onChange={() => {this.setState({instructor: true})}}>
+                                I'm an instructor
+                            </Radio>
+                            <Radio name="instructor" inline checked={this.state.instructor === false} onChange={() => {this.setState({instructor: false})}}>
+                                I'm a student
+                            </Radio>
+                        </Col>
+                    </FormGroup>
+                    {content}
+                    <FormGroup>
+                        <Col sm={8} smOffset={4}>
+                            <Button bsStyle="info" onClick={this.login}>Login</Button>
+                        </Col>
+                    </FormGroup>
+                </Form>
             </div>
         );
     }
 
 }
 
-export default connect()(Login);
+export default LoginForm;

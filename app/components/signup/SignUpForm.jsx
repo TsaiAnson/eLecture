@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-import { Button, Col, Form, FormGroup, ControlLabel, FormControl, Panel, Radio } from 'react-bootstrap';
-import { connect } from 'react-redux';
+import { Button, Col, Form, FormGroup, ControlLabel, FormControl, Radio } from 'react-bootstrap';
 
-import { createStudent } from '../actions/students';
-import { createInstructor } from '../actions/instructors';
-
-class SignUp extends Component {
+class SignUpForm extends Component {
 
     constructor(props) {
         super(props);
@@ -29,13 +25,7 @@ class SignUp extends Component {
     }
 
     signUp() {
-        const { dispatch } = this.props;
-        const { instructor, course, sid, name, email, password } = this.state;
-        if (instructor) {
-            dispatch(createInstructor(name, email, password));
-        } else {
-            dispatch(createStudent(course, sid));
-        }
+        this.props.signUp(this.state);
     }
 
     render() {
@@ -89,29 +79,27 @@ class SignUp extends Component {
         }
 
         return (
-            <Panel>
-                <Form horizontal>
-                    <FormGroup>
-                        <Col sm={8} smOffset={4}>
-                            <Radio name="instructor" inline checked={this.state.instructor === true} onChange={() => {this.setState({instructor: true})}}>
-                                I'm an instructor
-                            </Radio>
-                            <Radio name="instructor" inline checked={this.state.instructor === false} onChange={() => {this.setState({instructor: false})}}>
-                                I'm a student
-                            </Radio>
-                        </Col>
-                    </FormGroup>
-                    {content}
-                    <FormGroup>
-                        <Col sm={8} smOffset={4}>
-                            <Button bsStyle="info">Sign Up</Button>
-                        </Col>
-                    </FormGroup>
-                </Form>
-            </Panel>
+            <Form horizontal>
+                <FormGroup>
+                    <Col sm={8} smOffset={4}>
+                        <Radio name="instructor" inline checked={this.state.instructor === true} onChange={() => {this.setState({instructor: true})}}>
+                            I'm an instructor
+                        </Radio>
+                        <Radio name="instructor" inline checked={this.state.instructor === false} onChange={() => {this.setState({instructor: false})}}>
+                            I'm a student
+                        </Radio>
+                    </Col>
+                </FormGroup>
+                {content}
+                <FormGroup>
+                    <Col sm={8} smOffset={4}>
+                        <Button bsStyle="info" onClick={this.signUp}>Sign Up</Button>
+                    </Col>
+                </FormGroup>
+            </Form>
         );
     }
 
 }
 
-export default connect()(SignUp);
+export default SignUpForm;

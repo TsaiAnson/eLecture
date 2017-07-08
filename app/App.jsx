@@ -17,6 +17,7 @@ import logger from './api/logger';
 class App extends Component {
 
     render() {
+        const history = createBrowserHistory();
         const middleware = [
             promise,
             process.env.NODE_ENV === 'development' && logger
@@ -25,7 +26,7 @@ class App extends Component {
 
         return (
             <Provider store={store}>
-                <Router history={createBrowserHistory()}>
+                <Router history={history}>
                     <Routes/>
                 </Router>
             </Provider>

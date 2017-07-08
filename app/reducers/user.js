@@ -11,6 +11,10 @@ function user(state = initialState, action) {
             return Object.assign({}, state, {
                 authenticated: true
             });
+        case types.LOGOUT_SUCCESS:
+            return Object.assign({}, state, {
+                authenticated: false
+            });
         default:
             return state;
     }
