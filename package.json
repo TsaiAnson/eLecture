@@ -12,7 +12,7 @@
     "start": "cross-env NODE_ENV=production node server/index.js",
     "test": "cross-env NODE_ENV=test mocha --recursive"
   },
-  "author": "Anson, Titan",
+  "author": "Anson, Jove, Titan",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.16.2",

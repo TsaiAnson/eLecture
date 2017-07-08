@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import App from './containers/App';
 import Index from './containers/Index';
 import NotFound from './containers/NotFound';
+import Courses from './containers/Courses';
 import SignUp from './components/SignUp';
 
 class Routes extends Component {
@@ -27,6 +28,7 @@ class Routes extends Component {
                 <Route exact path="/" component={Index}/>
                 <Route exact path="/signup" component={Index}/>
                 <Route path="/app" render={() => this.requireAuth(<App/>)}/>
+                <Route path="/courses" component={Courses}/>
                 <Route component={NotFound}/>
             </Switch>
         );
