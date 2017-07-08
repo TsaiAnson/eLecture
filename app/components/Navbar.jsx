@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar as NavBar } from 'react-bootstrap';
 
-import Login from './Login';
+import LoginModal from './login/LoginModal';
 
 class Navbar extends Component {
 
@@ -16,7 +16,7 @@ class Navbar extends Component {
                 </NavBar.Header>
                 <NavBar.Collapse>
                     <NavBar.Form pullRight>
-                        <Login/>
+                        <LoginModal/>
                     </NavBar.Form>
                 </NavBar.Collapse>
             </NavBar>

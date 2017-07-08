@@ -10,6 +10,10 @@ function instructor(state = initialState, action) {
             return Object.assign({}, state, {
                 name: action.req.data.name
             });
+        case types.LOGOUT_REQUEST:
+            return Object.assign({}, state, {
+                name: ''
+            });
         default:
             return state;
     }

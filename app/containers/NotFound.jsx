@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Grid } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 class NotFound extends Component {
 
@@ -14,4 +15,4 @@ class NotFound extends Component {
 
 }
 
-export default NotFound;
+export default connect()(NotFound);

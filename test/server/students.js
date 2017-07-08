@@ -22,7 +22,7 @@ describe('Students', function () {
     before(function (done) {
         new Instructor({name: 'Foo', email: 'foobar@berkeley.edu', password: 'bar'}).save(function (error, instructor) {
             if (!error) {
-                course.instructors.push(instructor._id);
+                course.instructors.push(instructor.id);
                 course.save(function (error, data) {
                     if (!error) {
                         course = data;
@@ -84,7 +84,7 @@ describe('Students', function () {
                     response.body.should.have.property('sid', '123');
                     response.body.should.have.property('courses');
                     response.body.courses.should.be.an('array').that.has.lengthOf(1);
-                    response.body.courses.should.include(course._id.toString());
+                    response.body.courses.should.include(course.id);
                     done();
                 });
         });

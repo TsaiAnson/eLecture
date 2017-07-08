@@ -42,7 +42,7 @@ describe('Instructors', function () {
                     response.should.have.status(200);
                     response.body.should.have.property('name', 'Foo');
                     response.body.should.have.property('email', 'foobar@berkeley.edu');
-                    response.body.should.have.property('password', 'bar');
+                    response.body.should.have.property('password').that.is.not.equal('bar');
                     response.body.should.have.property('courses');
                     done();
                 });
