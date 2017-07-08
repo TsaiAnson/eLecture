@@ -6,7 +6,7 @@ const main = require('../controllers/main'),
     courses = require('../controllers/courses');
 
 let requireAuthentication = function (request, response, next) {
-    if (!request.authenticated) {
+    if (!request.isAuthenticated()) {
         return response.status(401).json({message: 'Unauthorized access.'});
     }
     next();
