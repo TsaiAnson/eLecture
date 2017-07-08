@@ -5,7 +5,7 @@ import * as types from './types';
 export function loginInstructor(email, password) {
     return {
         type: types.LOGIN_INSTRUCTOR,
-        promise: axios.post('/api/instructor/login', {
+        promise: axios.post('/login/instructor', {
             email: email,
             password: password
         })

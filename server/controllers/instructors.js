@@ -12,7 +12,6 @@ exports.login = function (request, response, next) {
                 if (!error) {
                     return response.status(200).json(instructor);
                 } else {
-                    console.log(error);
                     return response.status(401).json({message: error});
                 }
             });
@@ -38,7 +37,7 @@ exports.create = function (request, response, next) {
                     }
                 });
             } else {
-                next(new Error('Email already exists.'));
+                response.status(400).json({message: 'Email already exists.'});
             }
         } else {
             next(error);

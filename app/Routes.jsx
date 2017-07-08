@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, Redirect } from 'react-router';
+import { Switch, Route, withRouter } from 'react-router';
 import { connect } from 'react-redux';
 
 import App from './containers/App';
@@ -18,12 +18,16 @@ class Routes extends Component {
         if (this.props.authenticated) {
             return component;
         }
-        return <Redirect to="/"/>;
+        // TODO: find cleaner alternative
+        this.props.history.push('/login');
+        return <Index/>;
     }
 
     checkAuth(component) {
         if (this.props.authenticated) {
-            return <Redirect to="/app"/>;
+            // TODO: find cleaner alternative
+            this.props.history.push('/app');
+            return <App/>;
         }
         return component;
     }
@@ -32,6 +36,7 @@ class Routes extends Component {
         return (
             <Switch>
                 <Route exact path="/" render={() => this.checkAuth(<Index/>)}/>
+                <Route exact path="/login" render={() => this.checkAuth(<Index/>)}/>
                 <Route exact path="/signup" render={() => this.checkAuth(<Index/>)}/>
                 <Route path="/app" render={() => this.requireAuth(<App/>)}/>
                 <Route component={NotFound}/>
@@ -47,4 +52,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(Routes);
+export default withRouter(connect(mapStateToProps)(Routes));

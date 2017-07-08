@@ -34,14 +34,14 @@ exports.create = function (request, response, next) {
                                 response.status(200).json(student);
                             });
                         } else {
-                            response.status(400).json({message: 'Invalid course'});
+                            response.status(400).json({message: 'Invalid course code.'});
                         }
                     } else {
                         next(error);
                     }
                 });
             } else {
-                next(new Error('Student ID already exists.'));
+                response.status(400).json({message: 'Student ID already exists.'});
             }
         } else {
             next(error);

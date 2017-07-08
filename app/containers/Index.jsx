@@ -4,7 +4,8 @@ import { Switch, Route } from 'react-router';
 
 import Navbar from '../components/Navbar';
 import Home from '../components/Home';
-import SignUp from '../components/SignUp';
+import Login from '../components/login/Login';
+import SignUp from '../components/signup/SignUp';
 
 class Index extends Component {
 
@@ -15,6 +16,7 @@ class Index extends Component {
                 <Grid>
                     <Switch>
                         <Route exact path="/" component={Home}/>
+                        <Route exact path="/login" component={Login}/>
                         <Route exact path="/signup" component={SignUp}/>
                     </Switch>
                 </Grid>
