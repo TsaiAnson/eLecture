@@ -3,8 +3,8 @@ export default store => next => action => {
 
     if (!promise) return next(action);
 
-    const SUCCESS = type + '_SUCCESS';
     const REQUEST = type + '_REQUEST';
+    const SUCCESS = type + '_SUCCESS';
     const FAILURE = type + '_FAILURE';
 
     next({...rest, type: REQUEST});
