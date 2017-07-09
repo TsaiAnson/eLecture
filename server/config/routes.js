@@ -41,6 +41,10 @@ module.exports = function (app) {
         courses.create(request, response, next);
     });
 
+    app.get('/api/courses', function (request, response, next) {
+        courses.get(request, response, next);
+    });
+
     app.get('/api/:uri', function (request, response, next) {
         main.notFound(request, response, next);
     });
