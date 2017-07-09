@@ -29,11 +29,11 @@ module.exports = function (app) {
         main.logout(request, response, next);
     });
 
-    app.post('/api/student', function (request, response, next) {
+    app.post('/signup/student', function (request, response, next) {
         students.create(request, response, next);
     });
 
-    app.post('/api/instructor', function (request, response, next) {
+    app.post('/signup/instructor', function (request, response, next) {
         instructors.create(request, response, next);
     });
 
