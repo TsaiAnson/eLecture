@@ -15,7 +15,7 @@ export function loginStudent(sid, username) {
 export function createStudent(course, sid) {
     return {
         type: types.CREATE_STUDENT,
-        promise: axios.post('/api/student', {
+        promise: axios.post('/signup/student', {
             course: course,
             sid: sid
         })
