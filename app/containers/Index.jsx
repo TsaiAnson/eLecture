@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Grid } from 'react-bootstrap';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router';
 
 import Navbar from '../components/Navbar';
 import Home from '../components/Home';

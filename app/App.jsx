@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { Router } from 'react-router';
+import { createBrowserHistory } from 'history';
 import { createStore, applyMiddleware } from 'redux';
 
 import '../public/assets/css/app.css';
@@ -24,7 +25,7 @@ class App extends Component {
 
         return (
             <Provider store={store}>
-                <Router>
+                <Router history={createBrowserHistory()}>
                     <Routes/>
                 </Router>
             </Provider>

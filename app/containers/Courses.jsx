@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router';
 import { connect } from 'react-redux';
 
 import CourseSection from '../components/courses/CourseSection';
