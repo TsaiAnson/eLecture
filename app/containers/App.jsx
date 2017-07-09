@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
 import { Grid } from 'react-bootstrap';
-import { Route } from 'react-router';
+import { Switch, Route } from 'react-router';
+
+import CourseList from '../components/courses/CourseList';
 
 class App extends Component {
 
     render() {
         return (
-            <Grid>
+            <div>
                 <p>Navbar</p>
-                <div id="content">
-                    <p>Routes</p>
-                </div>
-                <p>Footer</p>
-            </Grid>
+                <Grid>
+                    <div id="content">
+                        <Switch>
+                            <Route path="/courses" component={CourseList} />
+                        </Switch>
+                         {/*<Link to="/app/courses"> Yo </Link>*/}
+                    </div>
+                    <p>Footer</p>
+                </Grid>
+            </div>
         );
     }
 
