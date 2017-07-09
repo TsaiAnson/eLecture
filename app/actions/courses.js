@@ -14,3 +14,10 @@ export function createCourse(term, year, number, name, instructors) {
         })
     };
 }
+
+export function getCourses() {
+    return {
+        type: types.GET_COURSES,
+        promise: axios.get('/api/courses')
+    };
+}
