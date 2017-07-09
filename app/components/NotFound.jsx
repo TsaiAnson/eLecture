@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
-import { Button, Grid } from 'react-bootstrap';
-import { connect } from 'react-redux';
+import { Button } from 'react-bootstrap';
 
 class NotFound extends Component {
 
     render() {
         return (
-            <Grid>
+            <div>
                 <h3>Not Found</h3>
                 <Button bsClass="btn btn-outline-info" onClick={this.props.history.goBack}>Back</Button>
-            </Grid>
+            </div>
         );
     }
 
 }
 
-export default connect()(NotFound);
+export default NotFound;

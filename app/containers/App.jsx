@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Grid } from 'react-bootstrap';
-import { Route } from 'react-router';
+import { Route } from 'react-router-dom';
 
 class App extends Component {
 

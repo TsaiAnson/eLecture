@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Switch, Route, withRouter } from 'react-router';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import App from './containers/App';
 import Index from './containers/Index';
-import NotFound from './containers/NotFound';
+import NotFound from './components/NotFound';
 
 class Routes extends Component {
 
@@ -39,7 +39,7 @@ class Routes extends Component {
                 <Route exact path="/login" render={() => this.checkAuth(<Index/>)}/>
                 <Route exact path="/signup" render={() => this.checkAuth(<Index/>)}/>
                 <Route path="/app" render={() => this.requireAuth(<App/>)}/>
-                <Route component={NotFound}/>
+                <Route component={Index}/>
             </Switch>
         );
     }

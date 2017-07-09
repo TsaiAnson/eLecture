@@ -15,7 +15,7 @@ export function loginInstructor(email, password) {
 export function createInstructor(name, email, password) {
     return {
         type: types.CREATE_INSTRUCTOR,
-        promise: axios.post('/api/instructor', {
+        promise: axios.post('/signup/instructor', {
             name: name,
             email: email,
             password: password
