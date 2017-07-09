@@ -12,7 +12,7 @@ class Courses extends Component {
 
     componentWillMount() {
         const { dispatch } = this.props;
-        dispatch(getCourses);
+        dispatch(getCourses());
     }
 
     render() {
