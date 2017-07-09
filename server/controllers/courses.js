@@ -32,3 +32,13 @@ exports.create = function (request, response, next) {
         }
     });
 };
+
+exports.get = function (request, response, next) {
+    Course.findById(request.user.courses, function (error, courses) {
+        if (!error) {
+            response.status(200).json(courses);
+        } else {
+            next(error);
+        }
+    });
+};
