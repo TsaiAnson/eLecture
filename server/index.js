@@ -56,24 +56,26 @@ require('./config/passport')(passport);
 require('./config/routes')(router);
 app.use('/', router);
 
+// Server
+const server = app.listen(port, function (error) {
+    if (error) {
+        return console.log(error);
+    }
+
+    console.log("Express server listening on port " + port);
+});
+
 // Socket.IO
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
+const io = require('socket.io').listen(server);
 
 io.on('connection', function(socket){
     console.log('a user connected');
     socket.on('disconnect', function(){
         console.log('user disconnected');
     });
-});
-
-// Server
-app.listen(port, function (error) {
-    if (error) {
-        return console.log(error);
-    }
-
-    console.log("Express server listening on port " + port);
+    socket.on('chat message', function(msg){
+        console.log('message: ' + msg);
+    });
 });
 
 module.exports = app;

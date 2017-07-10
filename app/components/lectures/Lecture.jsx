@@ -1,44 +1,51 @@
 import React, { Component, PropTypes } from 'react';
-import { Form, FormGroup, ControlLabel, FormControl, Row, Col, ButtonToolbar } from 'react-bootstrap';
+import { Form, FormGroup, FormControl, InputGroup, Row, Col, Button } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
-class CourseForm extends Component {
+import io from 'socket.io-client';
+
+class Lecture extends Component {
     constructor(props) {
         super(props);
-        this.state = {course: props.course};
+        this.state = {message: ""};
+        this.socket = io();
+
+        this.handleChangeMessage = this.handleChangeMessage.bind(this);
+        this.sendMessage = this.sendMessage.bind(this);
     }
 
-    save() {
-        this.props.save(this.state.course);
+    handleChangeMessage(event) {
+        this.setState({message: event.target.value});
     }
 
-    cancel() {
-        this.props.cancel();
-    }
-
-    handleChange(field, value) {
-        let course = this.state.course;
-        course[field] = value;
-        this.setState({course: course});
+    sendMessage() {
+        this.socket.emit('chat message', this.state.message);
+        this.setState({message: ""});
     }
 
     render() {
         return (
             <div>
                 <ul id="messages"></ul>
-                <form action="">
-                    <input id="m" autocomplete="off" /><button>Send</button>
-                </form>
+                <Form style={{position: "fixed", bottom: 0}}>
+                    <FormGroup>
+                        <InputGroup>
+                            <FormControl type="text"
+                                         value={this.state.message}
+                                         onChange={this.handleChangeMessage}/>
+                            <InputGroup.Button>
+                                <Button onClick={this.sendMessage}>Send</Button>
+                            </InputGroup.Button>
+                        </InputGroup>
+                    </FormGroup>
+                </Form>
             </div>
         );
     }
 }
 
-CourseForm.propTypes = {
-    course: PropTypes.object.isRequired,
-    teachers: PropTypes.array.isRequired,
-    students: PropTypes.array.isRequired,
-    save: PropTypes.func.isRequired,
-    cancel: PropTypes.func.isRequired
+Lecture.propTypes = {
+    lecture: PropTypes.object.isRequired
 };
 
-export default CourseForm;
+export default connect()(Lecture);
