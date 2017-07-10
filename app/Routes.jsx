@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { Switch, Route, withRouter } from 'react-router';
+import { Switch, Route, Redirect, withRouter } from 'react-router';
 import { connect } from 'react-redux';
 
 import App from './containers/App';
 import Index from './containers/Index';
-import NotFound from './containers/NotFound';
-import Courses from './containers/Courses';
 
 class Routes extends Component {
 
@@ -19,16 +17,13 @@ class Routes extends Component {
         if (this.props.authenticated) {
             return component;
         }
-        // TODO: find cleaner alternative
-        this.props.history.push('/login');
-        return <Index/>;
+        return <Redirect to={{pathname: '/login', state: { from: this.props.location }}}/>;
     }
 
     checkAuth(component) {
         if (this.props.authenticated) {
-            // TODO: find cleaner alternative
-            this.props.history.push('/app');
-            return <App/>;
+            const { from } = this.props.location.state || { from: { pathname: '/app' }};
+            return <Redirect to={from}/>;
         }
         return component;
     }
@@ -40,8 +35,7 @@ class Routes extends Component {
                 <Route exact path="/login" render={() => this.checkAuth(<Index/>)}/>
                 <Route exact path="/signup" render={() => this.checkAuth(<Index/>)}/>
                 <Route path="/app" render={() => this.requireAuth(<App/>)}/>
-                <Route path="/courses" component={Courses}/>
-                <Route component={NotFound}/>
+                <Route component={Index}/>
             </Switch>
         );
     }

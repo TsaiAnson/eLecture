@@ -1,82 +1,36 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import { Switch, Route } from 'react-router';
 import { connect } from 'react-redux';
 
-import CourseForm from 'components/courses/CourseForm';
-import CourseSelect from 'components/courses/CourseSelect';
-import {
-    fetchCourses,
-    addCourse
-} from '../actions/courses';
+import CourseSection from '../components/courses/CourseSection';
+import CourseInfo from '../components/courses/CourseInfo';
+import CourseForm from '../components/courses/CourseForm';
+
+import { getCourses } from '../actions/courses';
 
 class Courses extends Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     componentWillMount() {
         const { dispatch } = this.props;
-
-        dispatch(fetchCourses());
-    }
-
-    add() {
-        const { dispatch, schoolId } = this.props;
-        dispatch(addCourse());
-    }
-
-    edit() {
-        const { dispatch } = this.props;
-        dispatch(editCourse());
-    }
-
-    save() {
-        const { dispatch, draft } = this.props;
-        if (draft._id) {
-            dispatch(updateCourse(draft));
-        } else dispatch(createCourse(draft));
-    }
-
-    cancel() {
-        const { dispatch } = this.props;
-        dispatch(cancelCourse());
-    }
-
-    destroy() {
-        const { dispatch, current } = this.props;
-        dispatch(destroyCourse(current._id));
+        dispatch(getCourses());
     }
 
     render() {
-        const { courses, draft, isEditing } = this.props;
-        if (isEditing) {
-            return <CourseForm course={draft}
-                               students={students}
-                               teachers={teachers}
-                               save={this.save}
-                               cancel={this.cancel}/>
-        } else {
-            return <CourseSelect courses={courses}
-                                 onAdd={this.add}
-                                 onEdit={this.edit}
-                                 onDestroy={this.destroy}
-                                 onSelect={this.select}/>
-        }
+        return (
+            <Switch>
+                <Route exact path="/app/courses" render={() => <CourseSection courses={this.props.courses}/>}/>
+                <Route exact path="/app/courses/:courseId" render={() => <CourseInfo courses={this.props.courses}/>}/>
+                <Route exact path="/app/courses/:courseId/edit" render={() => <CourseForm courses={this.props.courses}/>}/>
+            </Switch>
+        );
     }
-}
 
-Courses.propTypes = {
-    courses: PropTypes.array.isRequired,
-    draft: PropTypes.object,
-    isEditing: PropTypes.bool,
-    dispatch: PropTypes.func.isRequired
-};
+}
 
 function mapStateToProps(state) {
     return {
-        draft: state.course.draft,
-        isEditing: state.course.isEditing
-    };
+        courses: state.course.courses
+    }
 }
 
 export default connect(mapStateToProps)(Courses);

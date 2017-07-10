@@ -56,6 +56,17 @@ require('./config/passport')(passport);
 require('./config/routes')(router);
 app.use('/', router);
 
+// Socket.IO
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+
+io.on('connection', function(socket){
+    console.log('a user connected');
+    socket.on('disconnect', function(){
+        console.log('user disconnected');
+    });
+});
+
 // Server
 app.listen(port, function (error) {
     if (error) {
