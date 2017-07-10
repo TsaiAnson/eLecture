@@ -6,9 +6,9 @@ export function loginStudent(sid, username) {
     return {
         type: types.LOGIN_STUDENT,
         promise: axios.post('/login/student', {
-            sid: sid
-        }),
-        username: username
+            sid: sid,
+            username: username
+        })
     };
 }
 

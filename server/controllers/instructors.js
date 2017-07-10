@@ -10,7 +10,7 @@ exports.login = function (request, response, next) {
             }
             request.logIn(instructor, function (error) {
                 if (!error) {
-                    return response.status(200).json(instructor);
+                    return response.status(200).json({name: instructor.name});
                 } else {
                     return response.status(401).json({message: error});
                 }
