@@ -6,13 +6,9 @@ const initialState = {
 
 function student(state = initialState, action) {
     switch (action.type) {
-        case types.LOGIN_STUDENT_REQUEST:
+        case types.LOGIN_STUDENT_SUCCESS:
             return Object.assign({}, state, {
-                username: action.username
-            });
-        case types.LOGIN_STUDENT_FAILURE:
-            return Object.assign({}, state, {
-                username: ''
+                username: action.req.data.username
             });
         case types.LOGOUT_REQUEST:
             return Object.assign({}, state, {

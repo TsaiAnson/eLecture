@@ -63,12 +63,16 @@ module.exports = function (passport) {
                 if (!student) {
                     Instructor.findById(id, function (error, instructor) {
                         if (!error) {
+                            instructor = instructor.toObject();
+                            instructor.instructor = true;
                             done(null, instructor);
                         } else {
                             done(error);
                         }
                     });
                 } else {
+                    student = student.toObject();
+                    student.instructor = false;
                     done(null, student);
                 }
             } else{

@@ -11,7 +11,7 @@ exports.login = function (request, response, next) {
             }
             request.logIn(student, function (error) {
                 if (!error) {
-                    return response.status(200).json(student);
+                    return response.status(200).json({username: request.body.username});
                 } else {
                     return response.status(401).json({message: error});
                 }
