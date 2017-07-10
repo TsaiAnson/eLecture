@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Grid } from 'react-bootstrap';
-import { Switch, Route } from 'react-router';
+import { Switch, Route, Redirect } from 'react-router';
 
+import AppNavbar from '../components/navbar/AppNavbar';
 import Courses from './Courses';
 
 class App extends Component {
@@ -9,12 +10,12 @@ class App extends Component {
     render() {
         return (
             <div>
-                <p>Navbar</p>
+                <AppNavbar/>
                 <Grid>
                     <Switch>
                         <Route path="/app/courses" component={Courses}/>
+                        <Route path="/app" render={() => <Redirect to="/app/courses"/>}/>
                     </Switch>
-                    <p>Footer</p>
                 </Grid>
             </div>
         );

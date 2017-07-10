@@ -3,7 +3,7 @@ const mongoose = require('mongoose'),
 
 function generateCode() {
     let code = '';
-    let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
     for (let i = 0; i < 6; i++) {
         code += characters.charAt(Math.floor(Math.random() * characters.length));
@@ -34,7 +34,7 @@ exports.create = function (request, response, next) {
 };
 
 exports.get = function (request, response, next) {
-    Course.findById(request.user.courses, function (error, courses) {
+    Course.find({_id: {$in: request.user.courses}}, function (error, courses) {
         if (!error) {
             response.status(200).json(courses);
         } else {

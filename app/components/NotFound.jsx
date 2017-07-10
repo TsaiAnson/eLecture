@@ -6,7 +6,7 @@ class NotFound extends Component {
     render() {
         return (
             <div>
-                <h3>Not Found</h3>
+                <h2>Not Found</h2>
                 <Button bsClass="btn btn-outline-info" onClick={this.props.history.goBack}>Back</Button>
             </div>
         );

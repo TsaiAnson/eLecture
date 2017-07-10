@@ -7,15 +7,18 @@ class CourseSection extends Component {
 
     render() {
         return (
-            <Row>
-                {this.prop.courses.map(function (course, index) {
-                    return (
-                        <Col key={index} lg={3} md={4} sm={6}>
-                            <CourseButton course={course}/>
-                        </Col>
-                    );
-                })}
-            </Row>
+            <div>
+                <h2>Courses</h2>
+                <Row>
+                    {this.props.courses.map(function (course, index) {
+                        return (
+                            <Col key={index} lg={3} md={4} sm={6}>
+                                <CourseButton course={course}/>
+                            </Col>
+                        );
+                    })}
+                </Row>
+            </div>
         );
     }
 }

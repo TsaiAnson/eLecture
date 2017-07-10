@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import CourseSection from '../components/courses/CourseSection';
 import CourseInfo from '../components/courses/CourseInfo';
-import CourseCreateForm from '../components/courses/CourseCreateForm';
+import CourseForm from '../components/courses/CourseForm';
 
 import { getCourses } from '../actions/courses';
 
@@ -18,9 +18,9 @@ class Courses extends Component {
     render() {
         return (
             <Switch>
-                <Route exact path="/" render={() => <CourseSection courses={this.props.courses}/>}/>
-                <Route exact path="/:courseId" component={CourseInfo}/>
-                <Route exact path="/:courseId/edit" component={CourseCreateForm}/>
+                <Route exact path="/app/courses" render={() => <CourseSection courses={this.props.courses}/>}/>
+                <Route exact path="/app/courses/:courseId" render={() => <CourseInfo courses={this.props.courses}/>}/>
+                <Route exact path="/app/courses/:courseId/edit" render={() => <CourseForm courses={this.props.courses}/>}/>
             </Switch>
         );
     }

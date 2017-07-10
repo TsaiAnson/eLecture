@@ -8,7 +8,7 @@ function course(state = initialState, action) {
     switch (action.type) {
         case types.GET_COURSES_SUCCESS:
             return Object.assign({}, state, {
-                courses: action.req.data.courses
+                courses: action.req.data
             });
         case types.LOGOUT_REQUEST:
             return Object.assign({}, state, {

@@ -6,7 +6,10 @@ class CourseButton extends Component {
     render() {
         const { course } = this.props;
         return (
-            <Button bsClass="btn btn-outline-info" href={'/app/courses/' + course._id}>{course.name}</Button>
+            <Button bsClass="btn btn-info" href={'/app/courses/' + course._id}>
+                <div><h4>{course.number}</h4></div>
+                <div>{course.name}</div>
+            </Button>
         );
     }
 

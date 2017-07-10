@@ -3,6 +3,7 @@ const path = require('path');
 const main = require('../controllers/main'),
     students = require('../controllers/students'),
     instructors = require('../controllers/instructors'),
+    users = require('../controllers/users');
     courses = require('../controllers/courses');
 
 let requireAuthentication = function (request, response, next) {
@@ -25,8 +26,8 @@ module.exports = function (app) {
         instructors.login(request, response, next);
     });
 
-    app.get('/logout', function (request, response, next) {
-        main.logout(request, response, next);
+    app.get('/api/logout', function (request, response, next) {
+        users.logout(request, response, next);
     });
 
     app.post('/signup/student', function (request, response, next) {
