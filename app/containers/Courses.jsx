@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import CourseSection from '../components/courses/CourseSection';
 import CourseInfo from '../components/courses/CourseInfo';
 import CourseForm from '../components/courses/CourseForm';
+import Lecture from '../components/lectures/Lecture';
 
 import { getCourses } from '../actions/courses';
 
@@ -21,6 +22,7 @@ class Courses extends Component {
                 <Route exact path="/app/courses" render={() => <CourseSection courses={this.props.courses}/>}/>
                 <Route exact path="/app/courses/:courseId" render={() => <CourseInfo courses={this.props.courses}/>}/>
                 <Route exact path="/app/courses/:courseId/edit" render={() => <CourseForm courses={this.props.courses}/>}/>
+                <Route path="/app/courses/:courseId/:lectureId" component={Lecture}/>
             </Switch>
         );
     }

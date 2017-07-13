@@ -4,7 +4,6 @@ import { Switch, Route, Redirect } from 'react-router';
 
 import AppNavbar from '../components/navbar/AppNavbar';
 import Courses from './Courses';
-import Lectures from './Lectures';
 
 class App extends Component {
 
@@ -15,7 +14,6 @@ class App extends Component {
                 <Grid>
                     <Switch>
                         <Route path="/app/courses" component={Courses}/>
-                        <Route path="/app/lectures" component={Lectures}/>
                         <Route path="/app" render={() => <Redirect to="/app/courses"/>}/>
                     </Switch>
                 </Grid>

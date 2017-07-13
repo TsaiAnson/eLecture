@@ -78,4 +78,10 @@ io.on('connection', function(socket){
     });
 });
 
+io.on('connection', function(socket){
+    socket.on('chat message', function(msg) {
+        socket.broadcast.emit('chat message', msg);
+    });
+});
+
 module.exports = app;
