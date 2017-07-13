@@ -57,12 +57,31 @@ require('./config/routes')(router);
 app.use('/', router);
 
 // Server
-app.listen(port, function (error) {
+const server = app.listen(port, function (error) {
     if (error) {
         return console.log(error);
     }
 
     console.log("Express server listening on port " + port);
+});
+
+// Socket.IO
+const io = require('socket.io').listen(server);
+
+io.on('connection', function(socket){
+    console.log('a user connected');
+    socket.on('disconnect', function(){
+        console.log('user disconnected');
+    });
+    socket.on('chat message', function(msg){
+        console.log('message: ' + msg);
+    });
+});
+
+io.on('connection', function(socket){
+    socket.on('chat message', function(msg) {
+        socket.broadcast.emit('chat message', msg);
+    });
 });
 
 module.exports = app;
