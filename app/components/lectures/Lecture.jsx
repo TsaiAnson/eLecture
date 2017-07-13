@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { Form, FormGroup, FormControl, InputGroup, Row, Col, Button } from 'react-bootstrap';
-import { connect } from 'react-redux';
 
 import io from 'socket.io-client';
 
 class Lecture extends Component {
+
     constructor(props) {
         super(props);
         this.state = {messages: [], message: ""};
@@ -47,8 +47,8 @@ class Lecture extends Component {
         return (
             <div style={containerStyle}>
                 <div id="messages" style={messagesStyle}>
-                    {this.state.messages.map((msg) => (
-                        <div style={messageStyle}>{msg}</div>
+                    {this.state.messages.map((msg, index) => (
+                        <div style={messageStyle} key={index}>{msg}</div>
                     ))}
                 </div>
                 <Form style={{flex: "0 0 80%"}}>
@@ -68,8 +68,4 @@ class Lecture extends Component {
     }
 }
 
-Lecture.propTypes = {
-    lecture: PropTypes.object.isRequired
-};
-
-export default connect()(Lecture);
+export default Lecture;
