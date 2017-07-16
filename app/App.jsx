@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router';
-import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { compose, createStore, applyMiddleware } from 'redux';
+import { persistStore, autoRehydrate } from 'redux-persist';
 import { createBrowserHistory } from 'history';
 
 import '../public/assets/css/app.css';
@@ -17,23 +17,38 @@ import logger from './api/logger';
 
 class App extends Component {
 
-    render() {
+    constructor(props) {
+        super(props);
+
         const browserHistory = createBrowserHistory();
         const middleware = [
             promise,
-            routerMiddleware(browserHistory),
             process.env.NODE_ENV === 'development' && logger
         ].filter(Boolean);
-        const store = createStore(rootReducer, applyMiddleware(...middleware));
-        const history = syncHistoryWithStore(browserHistory, store);
+        const store = createStore(rootReducer, compose(applyMiddleware(...middleware), autoRehydrate()));
 
-        return (
-            <Provider store={store}>
-                <Router history={history}>
-                    <Routes/>
-                </Router>
-            </Provider>
-        );
+        this.state = {browserHistory: browserHistory, store: store, rehydrated: false};
+    }
+
+    componentWillMount(){
+        persistStore(this.state.store, {}, () => {
+            this.setState({rehydrated: true});
+        });
+    }
+
+
+    render() {
+        if (this.state.rehydrated) {
+            return (
+                <Provider store={this.state.store}>
+                    <Router history={this.state.browserHistory}>
+                        <Routes/>
+                    </Router>
+                </Provider>
+            );
+        } else {
+            return null;
+        }
     }
 
 }
