@@ -31,7 +31,7 @@ exports.create = function (request, response, next) {
                 });
                 instructor.save(function (error, instructor) {
                     if (!error) {
-                        response.redirect('/login');
+                        response.status(200).json({name: instructor.name});
                     } else {
                         next(error);
                     }
