@@ -5,6 +5,7 @@ class LoginForm extends Component {
 
     constructor(props) {
         super(props);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.login = this.login.bind(this);
 
@@ -14,6 +15,20 @@ class LoginForm extends Component {
             username: '',
             email: '',
             password: ''
+        }
+    }
+
+    componentWillMount() {
+        document.addEventListener('keydown', this.handleKeyDown);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('keydown', this.handleKeyDown);
+    }
+
+    handleKeyDown(event) {
+        if (event.keyCode === 13) {
+            this.props.login(this.state);
         }
     }
 
