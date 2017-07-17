@@ -2,7 +2,7 @@ module.exports = function (app) {
 
     app.use(function (error, request, response, next) {
         if (response.headersSent) {
-            return next(err)
+            return next(error);
         }
 
         if (process.env.NODE_ENV === 'development') {
