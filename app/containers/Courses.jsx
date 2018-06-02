@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import { Switch, Route } from 'react-router';
-import { connect } from 'react-redux';
+import React, { PureComponent } from "react";
+import { connect } from "react-redux";
+import { Switch, Route } from "react-router";
 
-import CourseSection from '../components/courses/CourseSection';
-import Course from '../components/courses/Course';
+import Course from "../components/courses/Course";
+import CourseSection from "../components/courses/CourseSection";
 
-import { getCourses } from '../actions/courses';
+import { getCourses } from "../actions/courses";
 
-class Courses extends Component {
+class Courses extends PureComponent {
 
     componentWillMount() {
         const { dispatch } = this.props;
@@ -27,7 +27,7 @@ class Courses extends Component {
 
 function mapStateToProps(state) {
     return {
-        courses: state.course.courses
+        courses: state.course.courses,
     }
 }
 

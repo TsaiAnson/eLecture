@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { Button, Col, Form, FormGroup, ControlLabel, FormControl, Radio } from 'react-bootstrap';
+import React, { PureComponent } from "react";
+import { Button, Col, Form, FormGroup, ControlLabel, FormControl, Radio } from "react-bootstrap";
 
-class SignUpForm extends Component {
+class SignUpForm extends PureComponent {
 
     constructor(props) {
         super(props);
@@ -10,18 +10,16 @@ class SignUpForm extends Component {
 
         this.state = {
             instructor: false,
-            course: '',
-            sid: '',
-            name: '',
-            email: '',
-            password: ''
+            course: "",
+            sid: "",
+            name: "",
+            email: "",
+            password: "",
         };
     }
 
     handleChange(event) {
-        this.setState({
-            [event.target.name]: event.target.value
-        });
+        this.setState({ [event.target.name]: event.target.value });
     }
 
     signUp() {
@@ -82,11 +80,11 @@ class SignUpForm extends Component {
             <Form horizontal>
                 <FormGroup>
                     <Col sm={8} smOffset={4}>
-                        <Radio name="instructor" inline checked={this.state.instructor === true} onChange={() => {this.setState({instructor: true})}}>
-                            I'm an instructor
+                        <Radio name="instructor" inline checked={this.state.instructor === true} onChange={() => {this.setState({ instructor: true })}}>
+                            I"m an instructor
                         </Radio>
-                        <Radio name="instructor" inline checked={this.state.instructor === false} onChange={() => {this.setState({instructor: false})}}>
-                            I'm a student
+                        <Radio name="instructor" inline checked={this.state.instructor === false} onChange={() => {this.setState({ instructor: false })}}>
+                            I"m a student
                         </Radio>
                     </Col>
                 </FormGroup>

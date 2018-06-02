@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { Switch, Route, Redirect, withRouter } from 'react-router';
-import { connect } from 'react-redux';
+import React, { PureComponent } from "react";
+import { connect } from "react-redux";
+import { Switch, Route, Redirect, withRouter } from "react-router";
 
-import App from './containers/App';
-import Index from './containers/Index';
+import App from "./containers/App";
+import Index from "./containers/Index";
 
-class Routes extends Component {
+class Routes extends PureComponent {
 
     constructor(props) {
         super(props);
@@ -17,12 +17,12 @@ class Routes extends Component {
         if (this.props.authenticated) {
             return component;
         }
-        return <Redirect to={{pathname: '/login', state: { from: this.props.location }}}/>;
+        return <Redirect to={{ pathname: "/login", state: { from: this.props.location } }}/>;
     }
 
     checkAuth(component) {
         if (this.props.authenticated) {
-            const { from } = this.props.location.state || { from: { pathname: '/app' }};
+            const { from } = this.props.location.state || { from: { pathname: "/app" }};
             return <Redirect to={from}/>;
         }
         return component;

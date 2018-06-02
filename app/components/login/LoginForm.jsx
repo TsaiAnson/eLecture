@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { Button, Col, Form, ControlLabel, FormGroup, FormControl, Radio } from 'react-bootstrap';
+import React, { PureComponent } from "react";
+import { Button, Col, Form, ControlLabel, FormGroup, FormControl, Radio } from "react-bootstrap";
 
-class LoginForm extends Component {
+class LoginForm extends PureComponent {
 
     constructor(props) {
         super(props);
@@ -11,19 +11,19 @@ class LoginForm extends Component {
 
         this.state = {
             instructor: false,
-            sid: '',
-            username: '',
-            email: '',
-            password: ''
+            sid: "",
+            username: "",
+            email: "",
+            password: ""
         }
     }
 
     componentWillMount() {
-        document.addEventListener('keydown', this.handleKeyDown);
+        document.addEventListener("keydown", this.handleKeyDown);
     }
 
     componentWillUnmount() {
-        document.removeEventListener('keydown', this.handleKeyDown);
+        document.removeEventListener("keydown", this.handleKeyDown);
     }
 
     handleKeyDown(event) {
@@ -33,9 +33,7 @@ class LoginForm extends Component {
     }
 
     handleChange(event) {
-        this.setState({
-            [event.target.name]: event.target.value
-        });
+        this.setState({ [event.target.name]: event.target.value });
     }
 
     login() {
@@ -89,11 +87,11 @@ class LoginForm extends Component {
                 <Form horizontal>
                     <FormGroup>
                         <Col sm={8} smOffset={4}>
-                            <Radio name="instructor" inline checked={this.state.instructor === true} onChange={() => {this.setState({instructor: true})}}>
-                                I'm an instructor
+                            <Radio name="instructor" inline checked={this.state.instructor === true} onChange={() => {this.setState({ instructor: true })}}>
+                                I"m an instructor
                             </Radio>
-                            <Radio name="instructor" inline checked={this.state.instructor === false} onChange={() => {this.setState({instructor: false})}}>
-                                I'm a student
+                            <Radio name="instructor" inline checked={this.state.instructor === false} onChange={() => {this.setState({ instructor: false })}}>
+                                I"m a student
                             </Radio>
                         </Col>
                     </FormGroup>

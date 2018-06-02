@@ -5,7 +5,7 @@ module.exports = function (app) {
             return next(error);
         }
 
-        if (process.env.NODE_ENV === 'development') {
+        if (process.env.NODE_ENV === "development") {
             console.error(error.stack);
             console.error(error.message);
         }

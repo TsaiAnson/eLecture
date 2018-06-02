@@ -1,13 +1,15 @@
-import React, { Component, PropTypes } from 'react';
-import { Form, FormGroup, FormControl, InputGroup, Row, Col, Button } from 'react-bootstrap';
+import React, { PureComponent, PropTypes } from "react";
+import io from "socket.io-client";
+import { Form, FormGroup, FormControl, InputGroup, Row, Col, Button } from "react-bootstrap";
 
-import io from 'socket.io-client';
-
-class Lecture extends Component {
+class Lecture extends PureComponent {
 
     constructor(props) {
         super(props);
-        this.state = {messages: [], message: ""};
+        this.state = {
+            messages: [],
+            message: "",
+        };
         this.socket = io();
 
         this.componentDidMount = this.componentDidMount.bind(this);
@@ -16,7 +18,7 @@ class Lecture extends Component {
     }
 
     componentDidMount(){
-        this.socket.on('chat message', function(msg){
+        this.socket.on("chat message", function(msg){
             let newMessages = [...this.state.messages];
             newMessages.unshift(msg);
             this.setState({messages: newMessages});
@@ -28,7 +30,7 @@ class Lecture extends Component {
     }
 
     sendMessage() {
-        this.socket.emit('chat message', this.state.message);
+        this.socket.emit("chat message", this.state.message);
         let newMessages = [...this.state.messages];
         newMessages.unshift(this.state.message);
         this.setState({messages: newMessages, message: ""});
