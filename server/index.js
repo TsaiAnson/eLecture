@@ -56,6 +56,9 @@ require('./config/passport')(passport);
 require('./config/routes')(router);
 app.use('/', router);
 
+// Errors
+require('./config/errors')(app);
+
 // Server
 const server = app.listen(port, function (error) {
     if (error) {
