@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { Grid } from 'react-bootstrap';
-import { Switch, Route, Redirect } from 'react-router';
+import React, { PureComponent } from "react";
+import { Grid } from "react-bootstrap";
+import { Switch, Route, Redirect } from "react-router";
 
-import AppNavbar from '../components/navbar/AppNavbar';
-import Courses from './Courses';
+import Courses from "./Courses";
+import AppNavbar from "../components/navbar/AppNavbar";
 
-class App extends Component {
+class App extends PureComponent {
 
     render() {
         return (

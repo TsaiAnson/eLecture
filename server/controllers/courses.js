@@ -1,22 +1,22 @@
-const mongoose = require('mongoose'),
-    Course = mongoose.model('Course');
+const mongoose = require("mongoose"),
+    Course = mongoose.model("Course");
 
-function generateCode() {
-    let code = '';
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+const generateCode = function () {
+    let code = "";
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
     for (let i = 0; i < 6; i++) {
         code += characters.charAt(Math.floor(Math.random() * characters.length));
     }
 
     return code;
-}
+};
 
 exports.create = function (request, response, next) {
     let duplicate = null;
     do {
         request.body.code = generateCode();
-        Course.findOne({code: request.body.code}, function (error, course) {
+        Course.findOne({ code: request.body.code }, function (error, course) {
             if (!error) {
                 duplicate = course;
             } else {
@@ -34,7 +34,7 @@ exports.create = function (request, response, next) {
 };
 
 exports.get = function (request, response, next) {
-    Course.find({_id: {$in: request.user.courses}}, function (error, courses) {
+    Course.find({ _id: { $in: request.user.courses } }, function (error, courses) {
         if (!error) {
             response.status(200).json(courses);
         } else {
@@ -51,7 +51,7 @@ exports.update = function (request, response, next) {
             next(error);
         }
     });
-}
+};
 
 exports.remove = function (request, response, next) {
     Course.findByIdAndRemove(request.body._id, function (error, course) {
@@ -61,4 +61,4 @@ exports.remove = function (request, response, next) {
             next(error);
         }
     })
-}
+};

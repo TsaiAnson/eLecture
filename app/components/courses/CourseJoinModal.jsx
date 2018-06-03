@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-class CoursesAddForm extends Component {
+class CoursesAddForm extends PureComponent {
 
 }
 

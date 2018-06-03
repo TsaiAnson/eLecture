@@ -1,12 +1,12 @@
-const mongoose = require('mongoose'),
-    bcrypt = require('bcrypt-nodejs'),
+const mongoose = require("mongoose"),
+    bcrypt = require("bcrypt-nodejs"),
     Schema = mongoose.Schema;
 
 const InstructorSchema = new Schema({
-    name: {type: String, required: true},
-    email: {type: String, required: true, unique: true},
-    password: {type: String, required: true},
-    courses: {type: [Schema.Types.ObjectId]}
+    name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    courses: { type: [Schema.Types.ObjectId] },
 });
 
 InstructorSchema.statics = {
@@ -32,4 +32,4 @@ InstructorSchema.statics = {
     }
 };
 
-module.exports = mongoose.model('Instructor', InstructorSchema);
+module.exports = mongoose.model("Instructor", InstructorSchema);

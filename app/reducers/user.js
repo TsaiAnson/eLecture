@@ -1,8 +1,8 @@
-import * as types from '../actions/types';
+import * as types from "../actions/types";
 
 const initialState = {
     authenticated: false,
-    instructor: false
+    instructor: false,
 };
 
 function user(state = initialState, action) {
@@ -10,17 +10,17 @@ function user(state = initialState, action) {
         case types.LOGIN_INSTRUCTOR_SUCCESS:
             return Object.assign({}, state, {
                 authenticated: true,
-                instructor: true
+                instructor: true,
             });
         case types.LOGIN_STUDENT_SUCCESS:
             return Object.assign({}, state, {
                 authenticated: true,
-                instructor: false
+                instructor: false,
             });
         case types.LOGOUT_SUCCESS:
             return Object.assign({}, state, {
                 authenticated: false,
-                instructor: false
+                instructor: false,
             });
         default:
             return state;

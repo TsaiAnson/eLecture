@@ -22,7 +22,7 @@ exports.login = function (request, response, next) {
 };
 
 exports.create = function (request, response, next) {
-    Instructor.findOne({email: request.body.email}, function (error, instructor) {
+    Instructor.findOne({ email: request.body.email }, function (error, instructor) {
         if (!error) {
             if (!instructor) {
                 let instructor = new Instructor(request.body);

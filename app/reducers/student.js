@@ -1,18 +1,18 @@
-import * as types from '../actions/types';
+import * as types from "../actions/types";
 
 const initialState = {
-    username: ''
+    username: "",
 };
 
 function student(state = initialState, action) {
     switch (action.type) {
         case types.LOGIN_STUDENT_SUCCESS:
             return Object.assign({}, state, {
-                username: action.req.data.username
+                username: action.req.data.username,
             });
         case types.LOGOUT_REQUEST:
             return Object.assign({}, state, {
-                username: ''
+                username: "",
             });
         default:
             return state;

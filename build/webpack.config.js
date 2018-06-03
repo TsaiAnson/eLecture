@@ -1,32 +1,32 @@
-const webpack = require('webpack'),
-    path = require('path');
+const webpack = require("webpack"),
+    path = require("path");
 
 module.exports = {
-    entry: path.resolve(__dirname, '../', 'app', 'App.jsx'),
+    entry: path.resolve(__dirname, "../", "app", "App.jsx"),
     output: {
-        path: path.resolve(__dirname, '../', 'public', 'assets', 'js'),
-        filename: 'app.js'
+        path: path.resolve(__dirname, "../", "public", "assets", "js"),
+        filename: "app.js"
     },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.jsx?$/,
-                loader: 'babel-loader',
+                loader: "babel-loader",
                 exclude: /node_modules/,
                 query: {
-                    presets: ['es2015', 'react', 'stage-2']
+                    presets: ["env", "react", "stage-2"]
                 }
             },
             {
                 test: /\.css$/,
-                loader: 'style-loader!css-loader'
+                loader: "style-loader!css-loader"
             }
         ]
     },
     resolve: {
-        extensions: ['.js', '.jsx'],
+        extensions: [".js", ".jsx"],
     },
     plugins: [
-        new webpack.EnvironmentPlugin(['NODE_ENV'])
+        new webpack.EnvironmentPlugin(["NODE_ENV"])
     ]
 };

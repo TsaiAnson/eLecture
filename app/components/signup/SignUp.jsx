@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import { Panel } from 'react-bootstrap';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
+import { Panel } from 'react-bootstrap';
 
 import SignUpForm from './SignUpForm';
 
 import { createStudent } from '../../actions/students';
 import { createInstructor } from '../../actions/instructors';
 
-class SignUp extends Component {
+class SignUp extends PureComponent {
 
     constructor(props) {
         super(props);

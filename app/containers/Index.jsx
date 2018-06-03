@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import { Grid } from 'react-bootstrap';
-import { Switch, Route } from 'react-router';
+import React, { PureComponent } from "react";
+import { Grid } from "react-bootstrap";
+import { Switch, Route } from "react-router";
 
-import IndexNavbar from '../components/navbar/IndexNavbar';
-import Home from '../components/Home';
-import Login from '../components/login/Login';
-import SignUp from '../components/signup/SignUp';
-import NotFound from '../components/NotFound';
+import Home from "../components/Home";
+import IndexNavbar from "../components/navbar/IndexNavbar";
+import Login from "../components/login/Login";
+import NotFound from "../components/NotFound";
+import SignUp from "../components/signup/SignUp";
 
-class Index extends Component {
+class Index extends PureComponent {
 
     render() {
         return (

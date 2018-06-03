@@ -1,16 +1,16 @@
-import axios from 'axios';
+import axios from "axios";
 
-import * as types from './types';
+import * as types from "./types";
 
 export function createCourse(term, year, number, name, instructors) {
     return {
         type: types.CREATE_COURSE,
-        promise: axios.post('/api/courses', {
+        promise: axios.post("/api/courses", {
             term: term,
             year: year,
             number: number,
             name: name,
-            instructors: instructors
+            instructors: instructors,
         })
     };
 }
@@ -18,6 +18,6 @@ export function createCourse(term, year, number, name, instructors) {
 export function getCourses() {
     return {
         type: types.GET_COURSES,
-        promise: axios.get('/api/courses')
+        promise: axios.get("/api/courses"),
     };
 }

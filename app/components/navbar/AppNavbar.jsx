@@ -1,10 +1,15 @@
-import React, { Component } from 'react';
-import { Navbar, Nav, NavDropdown, MenuItem } from 'react-bootstrap';
-import { connect } from 'react-redux';
+import React, { PureComponent } from "react";
+import { MenuItem, Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { connect } from "react-redux";
 
-import { logout } from '../../actions/users';
+import { logout } from "../../actions/users";
 
-class AppNavbar extends Component {
+const logoStyle = {
+    fontSize: "28px",
+    marginTop: "4px",
+};
+
+class AppNavbar extends PureComponent {
 
     constructor(props) {
         super(props);
@@ -21,7 +26,7 @@ class AppNavbar extends Component {
             <Navbar>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <a href="/" className="logo" style={{marginTop: '4px', fontSize: '28px'}}/>
+                        <a href="/" className="logo" style={logoStyle}/>
                     </Navbar.Brand>
                     <Navbar.Toggle/>
                 </Navbar.Header>
@@ -42,7 +47,7 @@ function mapStateToProps(state) {
     return {
         instructor: state.user.instructor,
         username: state.student.username,
-        name: state.instructor.name
+        name: state.instructor.name,
     }
 }
 

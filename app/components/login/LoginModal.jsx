@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import { Button, Modal } from 'react-bootstrap';
-import { connect } from 'react-redux';
+import React, { PureComponent } from "react";
+import { connect } from "react-redux";
+import { Button, Modal } from "react-bootstrap";
 
-import LoginForm from './LoginForm';
+import LoginForm from "./LoginForm";
 
-import { loginStudent } from '../../actions/students';
-import { loginInstructor } from '../../actions/instructors';
+import { loginStudent } from "../../actions/students";
+import { loginInstructor } from "../../actions/instructors";
 
-class LoginModal extends Component {
+class LoginModal extends PureComponent {
 
     constructor(props) {
         super(props);
@@ -15,14 +15,12 @@ class LoginModal extends Component {
         this.login = this.login.bind(this);
 
         this.state = {
-            isOpen: false
+            isOpen: false,
         };
     }
 
     toggle() {
-        this.setState({
-            isOpen: !this.state.isOpen
-        });
+        this.setState({ isOpen: !this.state.isOpen });
     }
 
     login(data) {

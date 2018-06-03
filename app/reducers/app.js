@@ -1,16 +1,16 @@
-import { combineReducers } from 'redux';
-import { REHYDRATE } from 'redux-persist'
+import { combineReducers } from "redux";
+import { REHYDRATE } from "redux-persist";
 
-import user from './user';
-import student from './student';
-import instructor from './instructor';
-import course from './course';
+import user from "./user";
+import student from "./student";
+import instructor from "./instructor";
+import course from "./course";
 
 const combinedReducer = combineReducers({
     user,
     student,
     instructor,
-    course
+    course,
 });
 
 function rehydrate(state, action) {
@@ -19,7 +19,7 @@ function rehydrate(state, action) {
             const incoming = action.payload;
             if (incoming) {
                 for (let reducer of state) {
-                    state[reducer] = {...state[reducer], ...incoming[reducer]};
+                    state[reducer] = { ...state[reducer], ...incoming[reducer] };
                 }
             }
             return state;

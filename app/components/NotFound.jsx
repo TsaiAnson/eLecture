@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
+import React, { PureComponent } from "react";
+import { Button } from "react-bootstrap";
 
-class NotFound extends Component {
+class NotFound extends PureComponent {
 
     render() {
         return (

@@ -1,18 +1,18 @@
-import * as types from '../actions/types';
+import * as types from "../actions/types";
 
 const initialState = {
-    courses: []
+    courses: [],
 };
 
 function course(state = initialState, action) {
     switch (action.type) {
         case types.GET_COURSES_SUCCESS:
             return Object.assign({}, state, {
-                courses: action.req.data
+                courses: action.req.data,
             });
         case types.LOGOUT_REQUEST:
             return Object.assign({}, state, {
-                courses: []
+                courses: [],
             });
         default:
             return state;

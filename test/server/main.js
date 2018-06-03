@@ -1,21 +1,21 @@
-'use strict';
+"use strict";
 
-const chai = require('chai'),
-    chaiHttp = require('chai-http'),
+const chai = require("chai"),
+    chaiHttp = require("chai-http"),
     should = chai.should(),
-    server = require('../../server/index');
+    server = require("../../server/index");
 
     chai.use(chaiHttp);
 
-describe('Main', function () {
-    describe('GET /api/foobar', function () {
-        it('should return 404 not found', function (done) {
+describe("Main", function () {
+    describe("GET /api/foobar", function () {
+        it("should return 404 not found", function (done) {
             chai.request(server)
-                .get('/api/foobar')
+                .get("/api/foobar")
                 .end(function (error, response) {
                     response.should.have.status(404);
-                    response.body.should.have.property('message', 'Not Found');
-                    response.body.should.have.property('uri', 'foobar');
+                    response.body.should.have.property("message", "Not Found");
+                    response.body.should.have.property("uri", "foobar");
                     done();
                 });
         });

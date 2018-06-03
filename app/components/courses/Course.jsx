@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { Switch, Route, withRouter } from 'react-router';
+import React, { PureComponent } from "react";
+import { Switch, Route, withRouter } from "react-router";
 
-import CourseForm from '../../components/courses/CourseForm';
-import Lecture from '../../components/lectures/lecture';
+import CourseForm from "../../components/courses/CourseForm";
+import Lecture from "../../components/lectures/lecture";
 
-class Course extends Component {
+class Course extends PureComponent {
 
     render() {
         const course = this.props.courses.find(course => course._id === this.props.match.params.courseId);
