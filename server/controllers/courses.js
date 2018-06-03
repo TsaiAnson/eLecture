@@ -42,3 +42,23 @@ exports.get = function (request, response, next) {
         }
     });
 };
+
+exports.update = function (request, response, next) {
+    Course.findByIdAndUpdate(request.body._id, request.body, function (error, course) {
+        if (!error) {
+            response.status(200).json(course);
+        } else {
+            next(error);
+        }
+    });
+}
+
+exports.remove = function (request, response, next) {
+    Course.findByIdAndRemove(request.body._id, function (error, course) {
+        if (!error) {
+            response.status(200).json(course);
+        } else {
+            next(error);
+        }
+    })
+}
