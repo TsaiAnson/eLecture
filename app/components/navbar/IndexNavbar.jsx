@@ -3,6 +3,11 @@ import { Navbar } from "react-bootstrap";
 
 import LoginModal from "../login/LoginModal";
 
+const logoStyle = {
+    fontSize: "28px",
+    marginTop: "4px",
+};
+
 class IndexNavbar extends PureComponent {
 
     render() {
@@ -10,7 +15,7 @@ class IndexNavbar extends PureComponent {
             <Navbar>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <a href="/" className="logo" style={{ marginTop: "4px", fontSize: "28px" }}/>
+                        <a href="/" className="logo" style={logoStyle}/>
                     </Navbar.Brand>
                     <Navbar.Toggle/>
                 </Navbar.Header>

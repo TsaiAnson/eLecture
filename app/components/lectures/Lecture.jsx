@@ -1,6 +1,25 @@
 import React, { PureComponent, PropTypes } from "react";
 import io from "socket.io-client";
-import { Form, FormGroup, FormControl, InputGroup, Row, Col, Button } from "react-bootstrap";
+import { Form, FormGroup, FormControl, InputGroup, Button } from "react-bootstrap";
+
+const containerStyle = {
+    display: "flex",
+    flexFlow: "column",
+    height: "100%",
+    overflow: "hidden",
+};
+const messagesStyle = {
+    display: "flex",
+    flexDirection: "column-reverse",
+    flex: "1 1 20%",
+    overflow: "auto",
+};
+const messageStyle = {
+    flex: "1 1 auto",
+    alignSelf: "flex-start",
+    paddingTop: "10px",
+    paddingBottom: "10px",
+};
 
 class Lecture extends PureComponent {
 
@@ -18,34 +37,26 @@ class Lecture extends PureComponent {
     }
 
     componentDidMount(){
-        this.socket.on("chat message", function(msg){
-            let newMessages = [...this.state.messages];
+        const self = this;
+        this.socket.on("chat message", msg => {
+            let newMessages = [...self.state.messages];
             newMessages.unshift(msg);
-            this.setState({messages: newMessages});
-        }.bind(this));
+            self.setState({ messages: newMessages });
+        });
     }
 
     handleChangeMessage(event) {
-        this.setState({message: event.target.value});
+        this.setState({ message: event.target.value });
     }
 
     sendMessage() {
         this.socket.emit("chat message", this.state.message);
-        let newMessages = [...this.state.messages];
+        const newMessages = [...this.state.messages];
         newMessages.unshift(this.state.message);
-        this.setState({messages: newMessages, message: ""});
+        this.setState({ messages: newMessages, message: "" });
     }
 
     render() {
-        let containerStyle = {
-            height: "100%", overflow: "hidden", display: "flex", flexFlow: "column"
-        };
-        let messagesStyle = {
-            flex: "1 1 20%", display: "flex", flexDirection: "column-reverse", overflow: "auto"
-        };
-        let messageStyle = {
-            flex: "1 1 auto", alignSelf: "flex-start", paddingTop: "10px", paddingBottom: "10px"
-        };
         return (
             <div style={containerStyle}>
                 <div id="messages" style={messagesStyle}>
