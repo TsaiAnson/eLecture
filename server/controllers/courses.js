@@ -1,7 +1,7 @@
 const mongoose = require("mongoose"),
     Course = mongoose.model("Course");
 
-function generateCode() {
+const generateCode = function () {
     let code = "";
     const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
@@ -10,7 +10,7 @@ function generateCode() {
     }
 
     return code;
-}
+};
 
 exports.create = function (request, response, next) {
     let duplicate = null;
@@ -51,7 +51,7 @@ exports.update = function (request, response, next) {
             next(error);
         }
     });
-}
+};
 
 exports.remove = function (request, response, next) {
     Course.findByIdAndRemove(request.body._id, function (error, course) {
@@ -61,4 +61,4 @@ exports.remove = function (request, response, next) {
             next(error);
         }
     })
-}
+};
